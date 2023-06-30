@@ -147,7 +147,7 @@ export const getGames = () => {
     
     return async function (dispatch) {
         try {
-            const response = await axios.get(`https://pf-back-gamezone-production-f9d0.up.railway.app/allGames`)
+            const response = await axios.get(`allGames`)
             // console.log(response);
             const game = response.data
             dispatch({
@@ -163,7 +163,7 @@ export const getGames = () => {
 export const gameDetail = (id) => {
     return async function (dispatch) {
         try {
-            const response = await axios.get(`/https://pf-back-gamezone-production-f9d0.up.railway.app/search/${id}`)
+            const response = await axios.get(`search/${id}`)
             console.log(response);
             dispatch({
                 type: GET_DETAIL,
@@ -236,7 +236,7 @@ export const clearSearch = () => {
 export const getGamesOffer = () => {
     return async function (dispatch) {
         try {
-            const response = await axios.get(`https://pf-back-gamezone-production-f9d0.up.railway.app/specials`)
+            const response = await axios.get(`specials`)
             //console.log(response);
             dispatch({
                 type: GET_GAMES_OFFER,
@@ -251,7 +251,7 @@ export const getGamesOffer = () => {
 export const getGamesComingSoon = () => {
     return async function (dispatch) {
     try {
-        const response = await axios.get(`https://pf-back-gamezone-production-f9d0.up.railway.app/coming`);
+        const response = await axios.get(`coming`);
         
         const games = response.data;
 
@@ -276,7 +276,7 @@ export const getGamesComingSoon = () => {
 export const getGamesTopSellers = () => {
     return async function (dispatch) {
         try {
-            const response = await axios.get(`https://pf-back-gamezone-production-f9d0.up.railway.app/sellers`)
+            const response = await axios.get(`sellers`)
             //console.log(response);
             dispatch({
                 type: GET_GAMES_TOP_SELLERS,
@@ -291,7 +291,7 @@ export const getGamesTopSellers = () => {
 export const getGamesNewReleases = () => {
     return async function (dispatch) {
         try {
-            const response = await axios.get(`https://pf-back-gamezone-production-f9d0.up.railway.app/releases`)
+            const response = await axios.get(`releases`)
             //console.log(response);
             dispatch({
                 type: GET_GAMES_NEW_RELEASES,
@@ -331,7 +331,7 @@ export const clearCart = ()  => {
 export const createOrder = (totalPrice, cartGames, dataUser) => {
     return async function (dispatch) {
         try {
-            const response = await axios.post("https://pf-back-gamezone-production-f9d0.up.railway.app/createOrder", {totalPrice, cartGames, dataUser})
+            const response = await axios.post("/createOrder", {totalPrice, cartGames, dataUser})
             if (response.status === 200) {
                 dispatch({
                     type: CREATE_ORDER_SUCCESS,
@@ -384,7 +384,7 @@ export const removeWhishList = (id) => {
 export const postCreateUser = (props) => {
     return async function (dispatch) {
         try {
-           const user = await axios.post("https://pf-back-gamezone-production-f9d0.up.railway.app/crearCuenta",props)
+           const user = await axios.post("crearCuenta",props)
            console.log(user.props)
             return dispatch({
                 type : CREATE_USER,
@@ -401,7 +401,7 @@ export const postCreateUser = (props) => {
 export const postLogin = (datos) =>{
     return async function (dispatch) {
         try {
-            const userTwo = await axios.post("https://pf-back-gamezone-production-f9d0.up.railway.app/iniciarSesion",datos)
+            const userTwo = await axios.post("iniciarSesion",datos)
             console.log(userTwo.data, "estos son de las actions")
             return dispatch({
                 type : LOGIN_USER,
@@ -422,7 +422,7 @@ export const postLogin = (datos) =>{
 export const logoutUser = () => {
     return async function (dispatch) {
         try {
-            const logout = axios.post("https://pf-back-gamezone-production-f9d0.up.railway.app/cerrarSesion")
+            const logout = axios.post("cerrarSesion")
             console.log(logout)
             return dispatch({
                 type : LOGOUT_USER
@@ -439,7 +439,7 @@ export const logoutUser = () => {
 export const loginGoogle = () => {
     return function (dispatch) {
         try {
-            const login = window.open("https://pf-back-gamezone-production-f9d0.up.railway.app/auth/google", "_self")
+            const login = window.open("http://localhost:3001/auth/google", "_self")
             console.log(login)
         } catch (error) {
             console.log(error)
@@ -450,7 +450,7 @@ export const loginGoogle = () => {
 export const getDataGoogle = () => {
     return async (dispatch) => {
         try {
-            const dataGoogle = await axios.get("https://pf-back-gamezone-production-f9d0.up.railway.app/auth/user", {
+            const dataGoogle = await axios.get("/auth/user", {
                 withCredentials : true,
                 headers : {
                     Accept: "application/json",
@@ -477,7 +477,7 @@ export const getDataGoogle = () => {
 export const logoutGoogle = () => {
     return async (dispatch) => {
         try {
-            const logoutTwo = await window.open("https://pf-back-gamezone-production-f9d0.up.railway.app/auth/logout", "_self")
+            const logoutTwo = await window.open("http://localhost:3001/auth/logout", "_self")
             console.log(logoutTwo)
             return dispatch({
                 type : LOGOUT_USERGOOGLE
