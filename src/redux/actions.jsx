@@ -439,7 +439,7 @@ export const logoutUser = () => {
 export const loginGoogle = () => {
     return function (dispatch) {
         try {
-            const login = window.open("auth/google", "_self")
+            const login = window.open("https://back-gamezone-y96h.onrender.com//auth/google", "_self")
             console.log(login)
         } catch (error) {
             console.log(error)
@@ -477,7 +477,7 @@ export const getDataGoogle = () => {
 export const logoutGoogle = () => {
     return async (dispatch) => {
         try {
-            const logoutTwo = await window.open("auth/logout", "_self")
+            const logoutTwo = await window.open("https://back-gamezone-y96h.onrender.com/auth/logout", "_self")
             console.log(logoutTwo)
             return dispatch({
                 type : LOGOUT_USERGOOGLE
