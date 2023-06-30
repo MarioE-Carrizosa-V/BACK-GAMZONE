@@ -11,6 +11,7 @@
   width: 230px;
   transition: 500ms;
   cursor: pointer;
+  margin-top: 35px;
 }
 
 .box:hover {
