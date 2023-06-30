@@ -1,61 +1,68 @@
+.container {
+  /* outline: yellow solid 3px; */
+  text-decoration: none;
+  /* background-color: #141414; */
+  background-color:#232323;
+  /* color: #f1f1f1;  */
+  height: 70px; 
+} 
 
-  .footer-container {
-    text-decoration: none;
-    background-color: #141414;
-    color: #f1f1f1; 
-    display: flex;
-    justify-content: space-around;
-    height: min-content;
-  } 
+.containerImage{
+  /* outline: pink solid 3px; */
+  height: 50px;
+  width: 145px;
+  background-image: url("../../assets/LOGOGAMEZONE3\ blanco4.png");
+  background-size: cover; 
+  float: left;
+  margin-top: 10px;
+  margin-left: 60px;
+}
 
-  .footer-container p {
-    font-size: 18px;
-    text-decoration: none;
-  }
+.container p {
+  font-size: 19px;
+  text-decoration: none;
+}
 
-
-  .footer-section {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-    text-decoration: none;
-  }
+.section {
+  /* outline: red solid 3px; */
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  text-decoration: none;
+  display: flex;
+  float: right;
+  margin-top: 15px;
+  margin-right: 50px;
   
+}
 
+
+.section p {
   
-  .footer-section p {
-    margin: 3px 0;
-    color: #f1f1f1;
-    text-decoration: none; /* Agrega esta línea */
-  }
-  .footer-section a {
-    margin: 3px 0;
-    color: #f1f1f1;
-    text-decoration: none; /* Agrega esta línea */
-  }
+  margin: 3px 0;
+  /* color: #f1f1f1; */
+  text-decoration: none;
   
-  .footer-section img {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-  }
-  
-  .social-media-icons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .footer-column {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  
+}
 
+.section a {
+  margin: 3px 0;
+  color: #f1f1f1;
+  /* color:grey; */
+  text-decoration: none;
+}
 
+.section img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
 
-
-
-
-
-  
+.socialMediaIcons {
+  /* outline: red solid 3px; */
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #f1f1f1;
+  margin: 3px 0;
+}

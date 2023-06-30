@@ -7,12 +7,13 @@ import NavBar from './components/NavBar/NavBar';
 import Dashboard from './views/Adm/adm';
 import Search from "./views/Search/Search"
 import Review from './views/Reviews/Reviews';
-
 import Profile from './views/Profile/Profile';
 import MyGames from './views/MyGames/MyGames';
 import ReviewsModif from './views/Reviews/ReviewsModif';
-
 import ShoppingView from './views/Profile/ProfileViews/ShoppingView';
+import Terms from './views/FooterViews/Terms and conditions/Terms';
+import AboutUs from './views/FooterViews/About us/AboutUs';
+import Contact from './views/FooterViews/Contact/Contact';
 
 function App() {
 
@@ -38,9 +39,12 @@ return (
       <Route path="/pruebas" render={() => <ShoppingView />}/>
       <Route path="/user" render={(routeProps) => <Profile {...routeProps} />} />
       <Route path="/detail/reviews/:id" render={() => <ReviewsModif />} />
+
+      <Route path="/terms" render={() => <Terms />} />
+      <Route path="/aboutus" render={() => <AboutUs />} />
+      <Route path="/contact" render={() => <Contact />} />
       {location.pathname !== "/dashboard" && <Footer/>}
     </>
-    
   </div>
 );}
 
