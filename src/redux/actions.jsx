@@ -439,7 +439,7 @@ export const logoutUser = () => {
 export const loginGoogle = () => {
     return function (dispatch) {
         try {
-            const login = window.open("https://back-gamezone-y96h.onrender.com//auth/google", "_self")
+            const login = window.open("https://back-gamezone-y96h.onrender.com/auth/google", "_self")
             console.log(login)
         } catch (error) {
             console.log(error)
