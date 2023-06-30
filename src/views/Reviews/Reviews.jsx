@@ -29,7 +29,7 @@ const Review = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post("http://localhost:3001/user/review", form, IDUser, name, id)
+    axios.post("https://back-gamezone-y96h.onrender.com/user/review", form, IDUser, name, id)
 
     Swal.fire({
       position: "center",
