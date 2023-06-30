@@ -390,10 +390,7 @@
 //   );
 // };
 
-// export default Detail;
-
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearDetail, gameDetail } from "../../redux/actions";
@@ -416,6 +413,19 @@ const Detail = (props) => {
   
   const datosUser = JSON.parse(localStorage.getItem("user"));
   console.log("asdfghjhgfds",datosUser?.name)
+
+  // const leftRef = useRef(null);
+  // const rightRef = useRef(null);
+
+  // useEffect(() => {
+  //   const leftHeight = leftRef.current;
+  //   const rightHeight = rightRef.current;
+  //   const minHeight = Math.max(leftHeight, rightHeight);
+
+  //   leftRef.current.style.height = `${minHeight}px`;
+  //   rightRef.current.style.height = `${minHeight}px`;
+    
+  // }, []);
 
 
   
@@ -450,7 +460,7 @@ const Detail = (props) => {
   function sanitizeText(text) {
     if (typeof text === "string") {
       text = text.replace(/<\/?[^>]+(>|$)/g, "");
-      text = text.replace(/\*\*/g, "");
+      text = text.replace(/\\/g, "");
       return text;
     }
     return text;
@@ -573,6 +583,7 @@ const Detail = (props) => {
         <div className={style.container}>
           <div className={style.container_juego}>
             <div className={style.container_texto}>
+          <button className={style.backButton} onClick={() => handleBack()}>BACK</button>
               <div className={style.name_margen}>
                 <h1 className={style.name} translate="no">
                   {sanitizeText(game.name)}
@@ -652,12 +663,12 @@ const Detail = (props) => {
           <div className={style.detail_container}>
 
             
-            <div className={style.detail_left}>
+            <div className={style.detail_left } >
               <h2>
                 <strong>Requirements </strong>
               </h2>
               <p>{sanitizeText(game?.pc_requirements.minimum)}</p>
-              <p>{sanitizeText(game.pc_requirements.recommended)}</p>
+              <p>{sanitizeText(game?.pc_requirements.recommended)}</p>
               <h2>
                 <strong>Languages </strong>
               </h2>
@@ -676,7 +687,7 @@ const Detail = (props) => {
 
 
 
-            <div className={style.detail_rigth}>
+            <div className={style.detail_rigth } >
               <h2>
                 <strong>Categories</strong>
               </h2>
@@ -787,4 +798,3 @@ const Detail = (props) => {
 };
 
 export default Detail;
-

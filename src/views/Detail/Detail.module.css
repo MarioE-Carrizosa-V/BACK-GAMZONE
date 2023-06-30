@@ -5,12 +5,31 @@
   height: 100vh;
 }
 
+.backButton{
+  /* outline: red solid 3px; */
+  display: flex;
+  width: 20%;
+  height: 20%;
+  background-color: #343434;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  border: none;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 0%;
+  font-weight: bold;
+  font-size: 20px;
+  color: white
+}
+
 
 .container{
   /* outline: red solid 3px; */
   display: flex;
   height: auto;
-  width: 100vw;
+  width: auto;
   flex-direction: column;
   background: url("../../assets/Imagen1.png");
   backdrop-filter: blur(10px);
@@ -217,16 +236,14 @@
   /* outline: green solid 3px; */
   display: flex;
   width: 90%;
-  height: 70%;
+  /* height: 70%; */
+  min-height: 100px;
   margin: 1rem auto;
   justify-content: space-around;
   background-color: #232323;
   align-items: center;
   max-height: fit-content;
   box-sizing: content-box;
- 
-  
-  
 }
 
 
@@ -235,7 +252,8 @@
 .detail_left{
   /* outline: blue solid 3px; */
   display: flex;
-  height: 530px;
+  /* height: 530px; */
+  min-height: 530px;
   width: 48%;
   color: white;
   flex-direction: column;
@@ -247,10 +265,14 @@
  
 }
 
+
+
+
 .detail_rigth{
-  /* outline: blue solid 3px; */
+  /* outline: red solid 3px; */
   display: flex;
-  height: 530px;
+  /* height: 530px; */
+  min-height: 530px;
   width: 48%;
   color: white;
   flex-direction: column;
@@ -410,13 +432,13 @@
   /* outline: yellow solid 3px; */
   display: flex;
   min-height: 200px;
-  width: 100%;
+  width: 99.1%;
   color: white;
   background-color: #343434; 
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 20px;
-  margin-right: 20px;
+  /* margin-left: 20px;
+  margin-right: 20px; */
   /* overflow: hidden; */
 }
 
@@ -432,7 +454,7 @@
 .opinionback{
   /* outline: red solid 3px; */
   height: 70%;
-  width: 100%;
+  width: 98%;
   margin: 10px;
 }
 .opiniontopleft{
@@ -472,11 +494,3 @@
   width: 70px;
   border-radius: 50%;
 }
-
-
-
-
-
-
-
-
