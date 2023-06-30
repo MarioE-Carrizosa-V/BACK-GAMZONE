@@ -192,19 +192,7 @@ export const getByName = (name) => {
     try {
         const response = await axios.get(`nameGames?name=${name}`);
 
-        const sortedResponse = response.data.sort((a, b) => {
-        const aHasRecommendations = a.hasOwnProperty('recommendations');
-        const bHasRecommendations = b.hasOwnProperty('recommendations');
-        if (!aHasRecommendations && !bHasRecommendations) {
-            return 0;
-        } else if (!aHasRecommendations) {
-            return 1;
-        } else if (!bHasRecommendations) {
-            return -1;
-        }
-
-        return b.recommendations.total - a.recommendations.total;
-        });
+        const sortedResponse = response
 
         dispatch({
             type: GET_BY_NAME,
