@@ -272,7 +272,7 @@ const Form = () => {
       )
 
       await dispatch(postCreateUser(datos))
-      history.push("/form")
+      history.push("/login")
     }
 
     // Realizar la acción de envío del formulario aquí

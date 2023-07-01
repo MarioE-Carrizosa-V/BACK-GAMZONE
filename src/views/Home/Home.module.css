@@ -1,8 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Barlow|Tomorrow:400,700&display=swap");
 
 .title{
     color:aliceblue;
-    font-size: 25px;
-
+    font-size: 35px;
+    font-family: Tomorrow, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    outline: none;
+    padding: 20px 25px;
+    position: relative;
+    text-transform: uppercase;
 }
 .search{
     background-color: rgb(68, 68, 68);

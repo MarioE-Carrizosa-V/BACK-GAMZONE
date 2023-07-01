@@ -404,7 +404,6 @@ const Detail = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const game = useSelector((state) => state.gameDetail);
-  console.log(game);
   const isLoading = game === undefined || game === null;
   const genres = game && game?.genres;
   const [videoUrl, setVideoUrl] = useState("");
