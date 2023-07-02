@@ -27,6 +27,7 @@ const CardsContainer = (props) => {
             //appid={game.appid} 
             image={game.capsule_image || game.large_capsule_image} 
             name={game.name} 
+            coming_soon={game.coming_soon} 
             price={(game.price_overview?.final || game.price_overview || game.final_price)}
             rating={ratings}
             averageRating={averageRating}

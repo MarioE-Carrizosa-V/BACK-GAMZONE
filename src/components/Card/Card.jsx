@@ -8,7 +8,7 @@ import { FaStar } from 'react-icons/fa';
 
 const Card = (props) => {
   //console.log(props);
-  let { id ,price, name, image, averageRating } = props;
+  let {coming_soon, id ,price, name, image, averageRating } = props;
   price = parseFloat(isNaN(price) ? 0 : price) ?? 0;
   //console.log(price)
   const dispatch = useDispatch();
@@ -69,7 +69,10 @@ const Card = (props) => {
         <div className={style.rating}>{renderStars()}</div>
       )}
       </div>
-      <h3 className={style.price}>{price !== undefined && price !== 0 ? `$ ${price}` : 'Free'}</h3>
+      <h3 className={style.price}>
+        {coming_soon ? 'Coming Soon' : (price !== undefined && price !== 0 ? `$ ${price}` : 'Free')}
+      </h3>
+
       {!isShoppCartRoute && !isWhishListRoute && (
         <div>
           <button className={style.button} onClick={() => { handleAddWhish() }}>Add to WhishList</button>

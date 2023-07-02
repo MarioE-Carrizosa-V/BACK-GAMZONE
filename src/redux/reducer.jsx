@@ -48,18 +48,20 @@ const rootReducer=(state = initialState, action) => {
 
         case act.FILTER_LANGUAGES:
             const language = action.payload.toLowerCase();
-            const filteredSearchsssssssss = state.search.filter(game =>
-                game.supported_languages && game.supported_languages.toLowerCase().includes(language))
-            return{
-                ...state,
-              search: filteredSearchsssssssss
-            }
+            const filteredSea = state.search.filter(game =>
+              game.Languages && game.Languages.some(lang => lang.language.toLowerCase().includes(language))
+            );
+            return {
+              ...state,
+              search: filteredSea
+            };
+          
 
         case act.FILTER_GENRES:
             const genre = action.payload;
           
             const filteredSearchsssssss = state.search.filter(game =>
-              game.genres && game.genres.some(categor => categor.description === genre)
+              game.Genres && game.Genres.some(categor => categor.genre === genre)
             );
           
             return {
@@ -71,7 +73,7 @@ const rootReducer=(state = initialState, action) => {
             const category = action.payload;
           
             const filteredSearchssssss = state.search.filter(game =>
-              game.categories && game.categories.some(categor => categor.description === category)
+              game.Categories && game.Categories.some(categor => categor.category === category)
             );
           
             return {
@@ -140,65 +142,65 @@ const rootReducer=(state = initialState, action) => {
                 };
             
 
-        case act.ORDER_BY:
-            const orderBy = action.payload;
-            let sortedSearch = [...state.search];
-          
-            if (orderBy === "des") {
-              sortedSearch.sort((a, b) => {
-                if (!a.release_date.coming_soon && !b.release_date.coming_soon) {
-                  if (a.is_free && b.is_free) {
-                    return a.price_overview?.final - b.price_overview?.final;
-                  } else if (a.is_free && !b.is_free) {
-                    return -1;
-                  } else if (!a.is_free && b.is_free) {
-                    return 1;
-                  } else {
-                    return a.price_overview?.final - b.price_overview?.final;
-                  }
-                } else if (!a.release_date.coming_soon && b.release_date.coming_soon) {
-                  return -1;
-                } else if (a.release_date.coming_soon && !b.release_date.coming_soon) {
-                  return 1;
-                } else {
-                  return 0;
-                }
-              });
-            } else if (orderBy === "asc") {
-              sortedSearch.sort((a, b) => {
-                if (!a.release_date.coming_soon && !b.release_date.coming_soon) {
-                  if (a.is_free && b.is_free) {
-                    return a.price_overview?.final - b.price_overview?.final;
-                  } else if (a.is_free && !b.is_free) {
-                    return 1;
-                  } else if (!a.is_free && b.is_free) {
-                    return -1;
-                  } else {
-                    return b.price_overview?.final - a.price_overview?.final;
-                  }
-                } else if (!a.release_date.coming_soon && b.release_date.coming_soon) {
-                  return -1;
-                } else if (a.release_date.coming_soon && !b.release_date.coming_soon) {
-                  return 1;
-                } else {
-                  return 0;
-                }
-              });
-            }
-          
-            const filteredSearch = sortedSearch.filter(game => !game.release_date.coming_soon);
-          
-            return {
-              ...state,
-              search: filteredSearch
-            };
-          
-            case act.RESET_FILTERS:
-                return {
-                    ...state,
-                    search: state.searchcopy
-                    
-                }
+                case act.ORDER_BY:
+                    const orderBy = action.payload;
+                    let sortedSearch = [...state.search];
+                  
+                    if (orderBy === "des") {
+                      sortedSearch.sort((a, b) => {
+                        if (!a.coming_soon && !b.coming_soon) {
+                          if (a.is_free && b.is_free) {
+                            return a.price_overview - b.price_overview;
+                          } else if (a.is_free && !b.is_free) {
+                            return -1;
+                          } else if (!a.is_free && b.is_free) {
+                            return 1;
+                          } else {
+                            return a.price_overview - b.price_overview;
+                          }
+                        } else if (!a.coming_soon && b.coming_soon) {
+                          return -1;
+                        } else if (a.coming_soon && !b.coming_soon) {
+                          return 1;
+                        } else {
+                          return 0;
+                        }
+                      });
+                    } else if (orderBy === "asc") {
+                      sortedSearch.sort((a, b) => {
+                        if (!a.coming_soon && !b.coming_soon) {
+                          if (a.is_free && b.is_free) {
+                            return a.price_overview - b.price_overview;
+                          } else if (a.is_free && !b.is_free) {
+                            return 1;
+                          } else if (!a.is_free && b.is_free) {
+                            return -1;
+                          } else {
+                            return b.price_overview - a.price_overview;
+                          }
+                        } else if (!a.coming_soon && b.coming_soon) {
+                          return -1;
+                        } else if (a.coming_soon && !b.coming_soon) {
+                          return 1;
+                        } else {
+                          return 0;
+                        }
+                      });
+                    }
+                  
+                    const filteredSearch = sortedSearch.filter(game => !game.coming_soon);
+                  
+                    return {
+                      ...state,
+                      search: filteredSearch
+                    };
+                  
+                  case act.RESET_FILTERS:
+                    return {
+                      ...state,
+                      search: state.searchcopy
+                    }
+                  
             
             case act.GET_BY_NAME:
                 return {

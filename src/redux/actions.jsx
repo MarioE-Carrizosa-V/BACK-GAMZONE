@@ -218,7 +218,7 @@ export const getByName = (name) => {
     try {
         const response = await axios.get(`nameGames?name=${name}`);
 
-        const sortedResponse = response
+        const sortedResponse = response.data
 
         dispatch({
             type: GET_BY_NAME,

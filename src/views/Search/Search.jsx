@@ -9,8 +9,7 @@ import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Pagination from "../../components/Pagination/Pagination";
 const Search = () => {
-  const search2 = useSelector((state) => state.search);
-  const search = search2.data
+  const search = useSelector((state) => state.search);
 
   console.log(search)
   const dispatch = useDispatch();
@@ -28,7 +27,8 @@ const Search = () => {
   : [];
 
   const categories = search
-  ? search.map((game) => game.categories?.map((category) => category.description))
+  ? search
+      .map((game) => game.Categories.map((category) => category.category))
       .flat()
   : [];
 
@@ -37,7 +37,7 @@ const Search = () => {
   : [];
 
   const Genres = search
-  ? search.map((game) => game.genres?.map((category) => category.description))
+  ? search.map((game) => game.Genres?.map((category) => category.genre))
       .flat()
   : [];
   const filteredgenres = Genres
@@ -138,15 +138,15 @@ const filtertype = (e)=>{
   console.log(search)
 
   const handleclean = () =>{
-    // document.getElementById("Type").value = "none";
-    // document.getElementById("Required age").value = "none";
-    // document.getElementById("Is free").value = "none";
-    // document.getElementById("Price").value = "none";
-    // document.getElementById("Platforms").value = "none";
-    // document.getElementById("Categories").value = "none";
-    // document.getElementById("Genres").value = "none";
-    // document.getElementById("Controller").value = "none";
-    // document.getElementById("Languages").value = "none";
+    document.getElementById("Type").value = "none";
+    document.getElementById("Required age").value = "none";
+    document.getElementById("Is free").value = "none";
+    document.getElementById("Price").value = "none";
+    document.getElementById("Platforms").value = "none";
+    document.getElementById("Categories").value = "none";
+    document.getElementById("Genres").value = "none";
+    document.getElementById("Controller").value = "none";
+    document.getElementById("Languages").value = "none";
 }
 
   return (
