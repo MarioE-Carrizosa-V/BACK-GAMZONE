@@ -30,7 +30,7 @@ const initialState = {
     library: [],
     review: [],
     deleteReview: null,
-
+    gamesAdmin: []
     
 };
 
@@ -38,7 +38,11 @@ const rootReducer=(state = initialState, action) => {
     switch(action.type) {
         //filtros combinadosconst combtype = "COMBTYPE"
         
-        
+        case act.ALLGAMESADMIN:
+                    return {
+                        ...state,
+                        gamesAdmin: action.payload
+                    }
         
         //filtros de busqueda
 

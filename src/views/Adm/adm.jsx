@@ -1,11 +1,18 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as act from "../../redux/actions";
+import MUIDataTable from "mui-datatables";
 import styles from './adm.module.css';
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { TableDb } from "./Tablas/TableGames";
+
+
 
 function Dashboard() {
   //Form Game
   const [showForm, setShowForm] = useState(false);
   const [showUserForm, setShowUserForm] = useState(false);
+  const [showTable, setShowTable] = useState(false); // Adicionado estado para a tabela
   const [name, setName] = useState('');
   const [type, setType] = useState('');
   const [requiredAge, setRequiredAge] = useState('');
@@ -103,11 +110,19 @@ function Dashboard() {
   const handleCreateGameClick = () => {
     setShowForm(true);
     setShowUserForm(false);
+    setShowTable(false); // Adicionado para ocultar a tabela
   };
 
   const handleCreateUserClick = () => {
     setShowUserForm(true);
     setShowForm(false);
+    setShowTable(false); // Adicionado para ocultar a tabela
+  };
+
+  const handleSearchUserClick = () => {
+    setShowTable(true);
+    setShowForm(false);
+    setShowUserForm(false);
   };
 
   return (
@@ -142,10 +157,26 @@ function Dashboard() {
               </a>
             </li>
             <li>
-              <a href="#">
-                <i className={`fa fa-shopping-cart ${styles["fa-2x"]}`}></i>
+              <a href="#" onClick={handleSearchUserClick}>
+                <i className={`fa fa-gamepad ${styles["fa-2x"]}`}></i>
                 <span className={styles.nav_text}>
-                  Sales
+                  Search Games
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={handleSearchUserClick}>
+                <i className={`fa fa-users ${styles["fa-2x"]}`}></i>
+                <span className={styles.nav_text}>
+                  Search User
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="#" onClick={handleSearchUserClick}>
+                <i className={`fa fa-comments ${styles["fa-2x"]}`}></i>
+                <span className={styles.nav_text}>
+                Review
                 </span>
               </a>
             </li>
@@ -260,7 +291,7 @@ function Dashboard() {
                   Categories:
                   <input type="text" value={categories} onChange={(e) => setCategories(e.target.value)} />
                 </label>
-                
+
                 <label>
                   URL Image:
                   <input type="text" value={headerImage} onChange={(e) => setHeaderImage(e.target.value)} />
@@ -275,7 +306,7 @@ function Dashboard() {
         {showUserForm && (
           <div className={styles.cardContainer}>
             <div>
-            <button className={styles.close} onClick={() => setShowUserForm(!showUserForm)}>X</button>
+              <button className={styles.close} onClick={() => setShowUserForm(!showUserForm)}>X</button>
             </div>
             <div className={styles.form1}>
               <h2>Create User</h2>
@@ -307,6 +338,9 @@ function Dashboard() {
               </form>
             </div>
           </div>
+        )}
+        {showTable && (
+          <TableDb />
         )}
       </body>
     </html>

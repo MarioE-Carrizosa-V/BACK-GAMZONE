@@ -4,12 +4,15 @@
 }
 
 .container {
+  /* outline: red solid 3px; */
+  display: flex;
   position: relative;
-  height: 90.5vh;
+  height: 93vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-attachment: fixed;
 }
 
 .container::before {
@@ -70,7 +73,12 @@
 
   .subHeading{
     color: rgb(224, 220, 220);
-    font-size: 30px;
+    font-size: 32px;
     background-color: rgba(0, 0, 0, 0.75);
-    border-radius: 10px;
+    /* border-radius: 10px; */
+  }
+
+  .subHeading2{
+    color: rgb(224, 220, 220);
+    margin: 10px;
   }

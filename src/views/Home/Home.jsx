@@ -17,7 +17,7 @@ const Home = () => {
   const gamesTopSellers = useSelector(state => state.gamesTopSellers);
   const games = useSelector(state => state.games);
   const [name, setName] = useState("");
-  console.log(games);
+  //console.log(games);
   
   useEffect(() => {
     dispatch(act.getGames());
@@ -49,7 +49,7 @@ const Home = () => {
   };
 
   // Verificar si el array de juegos tiene al menos 14 elementos
-  const selectedGames = games.length >= 14 ? games.slice(0, 14) : games;
+  const selectedGames = games.length >= 12 ? games.slice(0, 12) : games;
 
   //console.log(search)
   return (

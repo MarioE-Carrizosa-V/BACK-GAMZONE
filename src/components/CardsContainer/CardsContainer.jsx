@@ -14,19 +14,25 @@ const CardsContainer = (props) => {
     
     return (
       <div className={styles.container}>
-        {uniqueGames.map((game, index) => (
-          <Card
+        {/* {console.log(uniqueGames)} */}
+        {uniqueGames.map((game, index) => {
+
+          const ratings = game.Reviews?.map(r => r.rating);
+          const averageRating = ratings?.reduce((sum, rat) => sum + rat, 0) / ratings?.length;
+
+          return (
+            <Card
             key={`${game.appid}-${index}`}
             id={game.id}
-            appid={game.appid} 
+            //appid={game.appid} 
             image={game.capsule_image || game.large_capsule_image} 
             name={game.name} 
-            price={( game.price_overview?.final || game.price_overview  || game.final_price )}
-
+            price={(game.price_overview?.final || game.price_overview || game.final_price)}
+            rating={ratings}
+            averageRating={averageRating}
             />
-          ))
-        }
-
+          )
+        })}
       </div>
     );
   }

@@ -4,7 +4,7 @@
   /* background-color: #141414; */
   background-color:#232323;
   /* color: #f1f1f1;  */
-  height: 70px; 
+  height: 7vh; 
 } 
 
 .containerImage{
@@ -62,7 +62,7 @@
   /* outline: red solid 3px; */
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   color: #f1f1f1;
-  margin: 3px 0;
+  margin: 3px 50px;
 }

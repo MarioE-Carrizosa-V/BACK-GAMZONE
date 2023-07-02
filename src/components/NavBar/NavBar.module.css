@@ -74,6 +74,84 @@
     border-radius: 50px;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Dosis:300,400,500%27');
+@import url('https://fonts.googleapis.com/css?family=Dosis:300,400,500');
+
+.img {
+    position: absolute;
+    top: -20px;
+    left: 0px;
+}
+
+.NaV {
+    list-style-type: none;
+    display: flex;
+    margin: 10;
+    padding: 0;
+    justify-content: flex-end;
+    align-items: center;
+    font-family: 'Dosis', sans-serif;
+}
+
+.NaV>li>a {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-size: 18px;
+    margin: auto;
+
+    padding-right: 27px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+.cart_icon{
+    font-size: 30px; 
+
+}
+.cart_count {
+    position: absolute;
+    font-weight: bold;
+    top: 47px;
+    right: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: #c8a74b;
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    border-radius: 50%;
+}
+
+.NaV>li>a:hover {
+    color: #5b5a5c;
+}
+
+.fixedNavbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #141414;
+    height: 72px;
+
+    z-index: 900 !important;
+    transition: 2.0s ease all;
+}
+  
+
+.usuario {
+    height: 40px;
+    width: 40px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-right: 40px;
+    border-radius: 50px;
+}
+
 .usuarioContainer {
     position: relative;
 }
@@ -153,7 +231,7 @@
     font-size: 16px;
     cursor: pointer;
     border-radius: 4px;
-    margin-right: 2px;
+    margin-right: 6px;
 }
 
 

@@ -1,36 +1,39 @@
 .container{
+    /* outline: red solid 3px; */
     /* display: flex; */
     height: auto;
-    /* width: 100vw; */
+    width: auto;
     background: url("../../../assets/Imagen1.png");
     backdrop-filter: blur(10px);
     background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+    /* margin: 0%; */
 
 }
 
 .title{
     /* outline: yellow solid 3px; */
-    display: flex;
+    /* display: flex; */
     font-size: 40px;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     color: white;
     justify-content: center;
 }
 
 .containerText{
-/* outline: red solid 3px; */
-margin-right: 200px;
-margin-left: 200px;
-margin-top: 100px;
+/* outline: white solid 3px; */
+margin-right: 10%;
+margin-left: 10%;
+margin-top: 5%;
+/* margin-bottom: calc(10% - 20px); */
 background-color: #343434;
 font-size: 20px;
 text-align: left;
 padding: 40px;
 color:white;
-margin-bottom: 100px;
+height: auto;
 }
 
 .containerText p {

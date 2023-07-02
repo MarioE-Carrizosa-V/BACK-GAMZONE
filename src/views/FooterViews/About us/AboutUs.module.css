@@ -85,3 +85,27 @@ color:  white;
     clear: both;
     margin: 30px;
   }
+
+  .containerImage1{
+    /* outline: yellow solid 3px; */
+float: left;
+height: 150px;
+width: 150px;
+background-image: url("../../../assets/Imagen\ Jero.jpg");
+background-size: cover; 
+margin-left: 20px;
+margin-top: 25px;
+border-radius: 50%;
+  }
+  
+  .containerImage3{
+    /* outline: yellow solid 3px; */
+float: left;
+height: 150px;
+width: 150px;
+background-image: url("../../../assets/Imagen\ Fer.jpg");
+background-size: cover; 
+margin-left: 20px;
+margin-top: 25px;
+border-radius: 50%;
+  }

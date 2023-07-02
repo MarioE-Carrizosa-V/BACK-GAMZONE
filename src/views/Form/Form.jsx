@@ -71,7 +71,7 @@ const Form = () => {
   //const lastPattern = RegExp(/^[A-Za-z\s]+$/)
   const userNamePattern = RegExp(/^[a-zA-Z0-9_]{3,16}$/)
   const emailPattern = RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
-  const passwordPattern = RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/)//--
+  const passwordPattern = RegExp(/^(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[a-zA-Z]).{8,}$/)//--
 
   const handleNameChange = (e) => {
     setName(e.target.value)
@@ -196,7 +196,7 @@ const Form = () => {
         toast: true,
         position: 'top-start',
         showConfirmButton: false,
-        timer: 3000,
+        timer: 1500,
         timerProgressBar: true,
         didOpen: (toast) => {
           toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -272,7 +272,7 @@ const Form = () => {
       )
 
       await dispatch(postCreateUser(datos))
-      history.push("/login")
+      history.push("/form")
     }
 
     // Realizar la acción de envío del formulario aquí
@@ -316,7 +316,7 @@ const Form = () => {
       toast: true,
       position: 'top-start',
       showConfirmButton: false,
-      timer: 3000,
+      timer: 1500,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -447,10 +447,3 @@ const Form = () => {
 };
 
 export default Form;
-
-//<Select
-//placeholder="Select a country"
-//options={countries}
-//id={selectedCountry}
-//onChange={setSelectedCountry}
-///>

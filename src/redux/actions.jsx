@@ -19,7 +19,6 @@ export const LOGIN_USER = "LOGIN_USER"
 export const LOGOUT_USER = "LOGOUT_USER"
 export const DATA_GOOGLE = "DATA_GOOGLE"
 export const LOGOUT_USERGOOGLE = "LOGOUT_USERGOOGLE"
-
 export const CREATE_ORDER_FAILURE = "CREATE_ORDER_FAILURE"
 export const CREATE_ORDER_SUCCESS = "CREATE_ORDER_SUCCESS"
 export const PLATFORMS = "PLATFORMS"
@@ -27,7 +26,6 @@ export const LANGUAGES = "LANGUAGES"
 export const CATEGORIES = "CATEGORIES"
 export const DEVELOPERS = "DEVELOPERS"
 export const GENRES = "GENRES"
-
 export const ORDER_BY = "ORDER_BY"
 export const FILTER_TYPE = "FILTER_TYPE"
 export const FILTER_AGE = "FILTER_AGE"
@@ -46,12 +44,47 @@ export const EDITCOUNTRY = "EDITCOUNTRY";
 export const EDIT_PROFILE_IMAGE = "EDIT_PROFILE_IMAGE";
 export const GETUSERSTORAGE = "GETUSERSTORAGE";
 export const GET_MYGAMES = "GET_MYGAMES";
-
 export const GETGAMEREVIEW = "GETGAMEREVIEW";
-
 export const MANDARREVIEW = "MANDARREVIEW";
-
 export const DELETEREVIEW = "DELETEREVIEW";
+export const FREE_ORDER = "FREE_ORDER";
+export const ALLGAMESADMIN = "ALLGAMESADMIN";
+
+
+
+
+
+export const allGamesAdmin = () => {
+    const endpoint = allGamesAdmin;
+    return async (dispatch) => {
+        const {data} = await axios.get(endpoint);
+        return dispatch({
+            type: ALLGAMESADMIN,
+            payload: data
+        })
+    }
+}
+
+export const freeOrder = (totalPrice, cartGames, dataUser) => {
+    console.log(totalPrice, cartGames, dataUser);
+    return async function (dispatch) {
+      try {
+        const response = await axios.post('/freeOrder', {totalPrice, cartGames, dataUser});
+        
+        if (response.status === 200) {
+          dispatch({
+            type: FREE_ORDER,
+            payload: response.data
+          });
+        } else {
+          dispatch(createOrderFailure('Error creating order'));
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+  };
+
 
 export const mandarAReview = (game) => {
     //console.log(game);
@@ -60,13 +93,6 @@ export const mandarAReview = (game) => {
         payload: game
     }
 }
-
-
-
-
-
-
-
 
 //! ARREGLAR TODAS LAS RUTAS Y REDUCER DEL RAILWAY
 //? FUNCIONES DE PETICIONES

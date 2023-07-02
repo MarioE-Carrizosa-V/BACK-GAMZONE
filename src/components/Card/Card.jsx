@@ -4,21 +4,26 @@ import { useLocation } from 'react-router-dom';
 import * as act from '../../redux/actions';
 import style from './Card.module.css';
 import { useHistory } from 'react-router-dom';
+import { FaStar } from 'react-icons/fa';
 
 const Card = (props) => {
-  let { id ,price, name, image, appid } = props;
-
+  //console.log(props);
+  let { id ,price, name, image, averageRating } = props;
   price = parseFloat(isNaN(price) ? 0 : price) ?? 0;
-
-
+  //console.log(price)
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
   const isShoppCartRoute = location.pathname === "/cart";
   const isWhishListRoute = location.pathname === "/whishlist";
-  // const wholePart = Math.floor(price / 100);
-  // const partDecimal = (price % 100).toString().padStart(2, '0');
-  // const formattedNumber = parseFloat(`${wholePart}.${partDecimal}`);
+  const renderStars = () => {
+    const rating = Math.round(averageRating);
+    const stars = [];
+    for (let i = 0; i < rating; i++) {
+      stars.push(<FaStar key={i} className={style.starIcon} />);
+    }
+    return stars;
+  };
 
   const handleAdd = () => {
       dispatch(act.addCart({ id, price: price, name, image }));
@@ -29,15 +34,15 @@ const Card = (props) => {
   };
 
   const handleRemove = () => {
-    dispatch(act.removeCart(id || appid));
+    dispatch(act.removeCart(id));
   };
 
   const handelRemoveWhishList = () => {
-    dispatch(act.removeWhishList(id || appid));
+    dispatch(act.removeWhishList(id));
   };
 
-  const handleClick = (appid, id) => {
-    history.push(`/detail/${appid || id}`);
+  const handleClick = (id) => {
+    history.push(`/detail/${id}`);
   };
 
   const titleRef = useRef(null);
@@ -56,10 +61,13 @@ const Card = (props) => {
   //console.log(appid);
 
   return (
-    <li className={style.box} key={id || appid}>
-      <div className={style.imagecontainer} onClick={() => { handleClick(id || appid) }}>
+    <li className={style.box} key={id}>
+      <div className={style.imagecontainer} onClick={() => { handleClick(id) }}>
         <img className={style.image} src={image} alt={name}></img>
         <h1 ref={titleRef} className={style.name}>{name}</h1>
+      {averageRating > 0 && (
+        <div className={style.rating}>{renderStars()}</div>
+      )}
       </div>
       <h3 className={style.price}>{price !== undefined && price !== 0 ? `$ ${price}` : 'Free'}</h3>
       {!isShoppCartRoute && !isWhishListRoute && (

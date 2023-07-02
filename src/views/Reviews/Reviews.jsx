@@ -4,16 +4,17 @@ import { FaStar } from "react-icons/fa";
 import axios from 'axios';
 import style from "./Reviews.module.css"
 import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 //! agregar alerta de swift
 const Review = () => {
+
+  const history = useHistory()
   const gameRe = useSelector(state => state.review)
   const { id, name } = gameRe
-  console.log(gameRe);
-  console.log(name);
-  console.log(gameRe.name);
+  //console.log(gameRe);
   const IDUser = JSON.parse(localStorage.getItem("user"));
-  console.log(IDUser.id);
+
   const [form, setForm] = useState({
     review: "",
     rating: 0,
@@ -28,17 +29,27 @@ const Review = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    axios.post("https://back-gamezone-y96h.onrender.com/user/review", form, IDUser, name, id)
-
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Review added successfully",
-      showConfirmButton: false,
-      timer: 2000
-    })
-
+    if (!form.review || !form.rating)  {
+      console.log("no lo hicisteeeeeee");
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Please, complete the form',
+        showCancelButton: false,
+        timer: 2000
+      })
+      return
+    } 
+    event.preventDefault();
+    history.push(`/detail/${gameRe.id}`)
+    axios.post("http://localhost:3001/user/review", form, IDUser, name, id)
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Review added successfully",
+        showConfirmButton: false,
+        timer: 2000
+      })
       .then(res => {
         setForm({
           review: "",
@@ -91,6 +102,3 @@ const Review = () => {
 };
 
 export default Review;
-
-
-

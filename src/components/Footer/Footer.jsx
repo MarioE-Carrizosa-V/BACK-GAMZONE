@@ -22,12 +22,11 @@ const Footer = () => {
                     <a href="/aboutus">
                         <p>About us</p>
                     </a>
-                    <a href="/contact">
-                        <p>Contact</p>
-                    </a>
                     <div className={style.socialMediaIcons}>
                         <p>Follow us</p>
+                        <a href="https://twitter.com/GameZone2023" target="_blank" rel="noopener noreferrer">
                         <FontAwesomeIcon icon={faTwitter} size="xl" />
+                        </a>
                         <a href="https://www.facebook.com/profile.php?id=100094378233290" target="_blank" rel="noopener noreferrer">
                         <FontAwesomeIcon icon={faFacebook} size="xl" />
                         </a>

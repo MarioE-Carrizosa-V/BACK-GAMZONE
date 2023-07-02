@@ -10,6 +10,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Pagination from "../../components/Pagination/Pagination";
 
 const Search = () => {
+  const search = useSelector((state) => state.search);
+  // const search2 = search2.data
+
+  console.log(search.data)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(act.languagesGames());
@@ -17,13 +21,11 @@ const Search = () => {
   const [name, setName] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [resultsPerPage, setResultsPerPage] = useState(8);
-  const search = useSelector((state) => state.search);
   const gamesFilterLanguages = useSelector(state => state.languagesGames);
 
 
 
-  const types =  search 
-  ? [...new Set(search.map((game) => game.type))]
+  const types =  search? [...new Set(search?.map((game) => game.type))]
   : [];
 
   const categories = search

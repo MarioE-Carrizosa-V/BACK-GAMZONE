@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import styles from "./Profile.module.css";
 import ProfileView from "./ProfileViews/ProfileView";
-import ShoppingView from "./ProfileViews/ShoppingView";
+//import ShoppingView from "./ProfileViews/ShoppingView";
 import ReviewsView from "./ProfileViews/ReviewsView";
 import * as act from "../../redux/actions";
+import MyGames from "../MyGames/MyGames";
 
 const Profile = (props) => { // Agrega props como parámetro
   const [activeOption, setActiveOption] = useState("profile");
@@ -13,8 +14,9 @@ const Profile = (props) => { // Agrega props como parámetro
     switch (activeOption) {
       case "profile":
         return <ProfileView  />;
-      case "shopping":
-        return <ShoppingView />;
+        //? cambie el redireccionamiento, porque no se llama mas shopping es la biblioteca asjhdgas
+      case "library":
+        return <MyGames />;
       case "reviews":
         return <ReviewsView />;
       default:
@@ -36,7 +38,7 @@ const Profile = (props) => { // Agrega props como parámetro
               </a>
             </li>
             <li className="has subnav">
-              <a href="/library" onClick={() => setActiveOption("shopping")}>
+              <a href="/library" onClick={() => setActiveOption("library")}>
                 <i className={`fa fa-gamepad ${styles["fa-2x"]}`}></i>
                 <span className={styles.nav_text}>MyGames</span>
               </a>
@@ -65,5 +67,3 @@ const Profile = (props) => { // Agrega props como parámetro
 };
 
 export default Profile;
-
-

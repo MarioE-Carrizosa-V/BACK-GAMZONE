@@ -5,6 +5,7 @@ const Terms = () => {
     return(
         
         <div className={style.container}>
+            <br />
             <div className={style.title}>
             <p>TERMS AND CONDITIONS</p>
             </div>
@@ -72,6 +73,9 @@ const Terms = () => {
 <p>GAME ZONE has the right, but not the obligation, to monitor, edit, or remove any User Contributions. GAME ZONE also has the right to terminate your access to all or part of the Services for any reason, including, but not limited to, any violation of these Terms. GAME ZONE may exercise these rights at any time, without prior notice or liability to you or any third party.
 </p>
         </div>
+
+      <br />
+      <br />
         </div>
     )
 }

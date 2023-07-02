@@ -3,58 +3,66 @@ import { useSelector } from "react-redux";
 import { FaStar } from "react-icons/fa";
 import axios from 'axios';
 import style from "./Reviews.module.css"
-import { withRouter } from 'react-router-dom';
-import Swal from "sweetalert2";
+import { withRouter, useHistory  } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-//! agregar alerta de swift
-const ReviewsModif = ({ match }) => {
-  const { id } = match.params;
 
+const ReviewsModif = () => {
+
+  const history = useHistory()
   const gameRe = useSelector(state => state.review)
- 
-  console.log("IIIIIIIIIIIDDDDDDDDDDD",id);
-  console.log("REEEEEEEEE",gameRe);
-
+  console.log("asdasdasda",gameRe);
+  //console.log("IIIIIIIIIIIDDDDDDDDDDD", id);
+  const id = gameRe
   const IDUser = JSON.parse(localStorage.getItem("user"));
+  console.log(IDUser);
+  const idsGames = gameRe.idGame
 
   const [form, setForm] = useState({
     review: "",
     rating: 0,
-    id: id,
+    id: gameRe.id,
     name: gameRe.name,
     idGame: gameRe.id,
   });
 
- 
-  
   const handleStarClick = (rating) => {
     setForm({ ...form, rating });
   };
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-    axios.put("https://back-gamezone-y96h.onrender.com/user/review", form, id)
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "editado",
-      showConfirmButton: false,
-      timer: 2000
-  })
-    
-    .then(res => {
-      setForm({
-        review: "",
-        rating: 0,
-        
-    
+    if (!form.review  || !form.rating)  {
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Please, complete the form',
+        showCancelButton: false,
+        timer: 2000
+      })
+      return
+    } else {
+      //event.preventDefault();
+      history.push(`/detail/${idsGames}`)
+      axios.put("http://localhost:3001/user/review", form, id)
+      Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "editado",
+          showConfirmButton: false,
+          timer: 2000
+      })
+      .then(res => {
+        setForm({
+          review: "",
+          rating: 0,
+        });
+      })
+      .catch(error => {
+        console.error("Error submitting review:", error);
       });
-    })
-    .catch(error => {
-      console.error("Error submitting review:", error);
-    });
-  };
+    };
+  }
   
   const renderStars = () => {
     const stars = [];
@@ -83,7 +91,6 @@ const ReviewsModif = ({ match }) => {
           onChange={(event) => setForm({ ...form, review: event.target.value })}
           className={style.texto_review}
         />
-      
       <div>
         <label className={style.rating}>Rating:</label>
         <div className={style.starContainer}>
@@ -94,7 +101,6 @@ const ReviewsModif = ({ match }) => {
       </div>
     </form>
     </div>
-
   );
 };
 
