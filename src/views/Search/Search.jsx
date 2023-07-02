@@ -98,7 +98,7 @@ const filtertype = (e)=>{
 
 
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const maxPageButtons = 3;
 
   const handleChange = (e) => {
@@ -123,6 +123,14 @@ const filtertype = (e)=>{
     }
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+  
   const indexOfLastResult = currentPage * resultsPerPage;
   const indexOfFirstResult = indexOfLastResult - resultsPerPage;
   const currentResults = search ? search.slice(indexOfFirstResult, indexOfLastResult) : [];

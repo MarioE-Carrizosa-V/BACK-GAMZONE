@@ -83,21 +83,29 @@ const rootReducer=(state = initialState, action) => {
           
 
 
-        case act.FILTER_PLATFORMS:
-            let filteredSearchssss;
-            const platform = action.payload
-            console.log(platform)
-            if (platform === "windows") {
-              filteredSearchssss = state.search.filter(game => game.platforms.windows === true);
-            } else if(platform === "linux"){
-              filteredSearchssss = state.search.filter(game => game.platforms.linux === true);
-            } else if(platform === "mac"){
-                filteredSearchssss = state.search.filter(game => game.platforms.mac === true);
-            }
-            return {
-              ...state,
-              search: filteredSearchssss
-            };
+            case act.FILTER_PLATFORMS:
+                const platform = action.payload;
+                let filteredSearchhhh;
+              
+                if (platform === "windows") {
+                    filteredSearchhhh = state.search.filter(game =>
+                    game.Platforms.some(platformObj => platformObj.platform === "windows")
+                  );
+                } else if (platform === "linux") {
+                    filteredSearchhhh = state.search.filter(game =>
+                    game.Platforms.some(platformObj => platformObj.platform === "linux")
+                  );
+                } else if (platform === "mac") {
+                    filteredSearchhhh = state.search.filter(game =>
+                    game.Platforms.some(platformObj => platformObj.platform === "mac")
+                  );
+                }
+              
+                return {
+                  ...state,
+                  search: filteredSearchhhh
+                };
+              
 
 
 
