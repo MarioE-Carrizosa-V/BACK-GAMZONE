@@ -8,12 +8,11 @@ import CardsContainer from "../../components/CardsContainer/CardsContainer";
 import { faSearchengin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Pagination from "../../components/Pagination/Pagination";
-
 const Search = () => {
-  const search = useSelector((state) => state.search);
-  // const search2 = search2.data
+  const search2 = useSelector((state) => state.search);
+  const search = search2.data
 
-  console.log(search.data)
+  console.log(search)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(act.languagesGames());
@@ -139,15 +138,15 @@ const filtertype = (e)=>{
   console.log(search)
 
   const handleclean = () =>{
-    document.getElementById("Type").value = "none";
-    document.getElementById("Required age").value = "none";
-    document.getElementById("Is free").value = "none";
-    document.getElementById("Price").value = "none";
-    document.getElementById("Platforms").value = "none";
-    document.getElementById("Categories").value = "none";
-    document.getElementById("Genres").value = "none";
-    document.getElementById("Controller").value = "none";
-    document.getElementById("Languages").value = "none";
+    // document.getElementById("Type").value = "none";
+    // document.getElementById("Required age").value = "none";
+    // document.getElementById("Is free").value = "none";
+    // document.getElementById("Price").value = "none";
+    // document.getElementById("Platforms").value = "none";
+    // document.getElementById("Categories").value = "none";
+    // document.getElementById("Genres").value = "none";
+    // document.getElementById("Controller").value = "none";
+    // document.getElementById("Languages").value = "none";
 }
 
   return (

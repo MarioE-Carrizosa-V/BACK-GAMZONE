@@ -4,29 +4,8 @@
   align-items: center;
   height: 100vh;
 }
-
-.backButton{
-  /* outline: red solid 3px; */
-  display: flex;
-  width: 20%;
-  height: 20%;
-  background-color: #343434;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  border: none;
-  margin-left: 10px;
-  margin-top: 10px;
-  margin-bottom: 0%;
-  font-weight: bold;
-  font-size: 20px;
-  color: white
-}
-
-
 .container{
-  /* outline: red solid 3px; */
+  /* outline: rgb(0, 255, 119) solid 3px; */
   display: flex;
   height: auto;
   width: auto;
@@ -34,14 +13,13 @@
   background: url("../../assets/Imagen1.png");
   backdrop-filter: blur(10px);
   background-attachment: fixed;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   
 }
-
 .container_juego{
-  /* outline: red solid 3px; */
+  /* outline: rgb(1, 12, 112) solid 3px; */
   width: 90%;
   height: 60%;
   display: flex;
@@ -51,9 +29,26 @@
   align-content: center;
   background: #232323;
 }
-
-
-
+.backButton{
+  /* outline: red solid 3px; */
+  display: flex;
+  width: 4%;
+  height: 20%;
+  background-color: transparent;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 0%;
+  margin-left: 75px;
+  font-weight: bold;
+  font-size: 40px;
+  cursor: pointer;
+  color: white;
+  
+}
 .container_texto{
   /* outline: yellow solid 3px; */
   display: flex;
@@ -63,71 +58,82 @@
   background: #070606;
   margin: 3% 1.5rem;
 }
-
 .container_imagenes{
   /* outline: pink solid 3px; */
   display: flex;
   width: 48%;
   height: 500px;
   margin: 3% 1.5rem;
-  flex-direction: column;
-
-  
+  flex-direction: column; 
 }
-
 .image{
   /* outline: blue solid 3px; */
   display: flex;
   height: 75%;
   width: 100%;
 }
-
 .container_screenshots{
-  /* outline: orange solid 3px; */
+  /* outline: yellow solid 3px; */
   display: flex;
   height: 25%;
   width: 100%;
 }
-
-.container_videos{
-  /* outline: orange solid 3px; */
-  display: flex;
-  height: 25%;
-  width: 100%;
+.video{
+    /* outline: yellow solid 3px; */
+    transition: transform 0.3s ease-in-out;   
 }
-
-
-
-
-
 .img{
+  /* outline: red solid 3px; */
   height: 100%;
   width: 100%;
 }
-
+.images{
+  /* outline: red solid 3px; */
+  height: 100%;
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+.images:hover {
+  transform: scale(2);
+  transition: transform 0.8s ease-in-out;
+}
+.video:hover {
+  transform: scale(2);
+  transition: transform 0.8s ease-in-out; 
+}
 .descripcion{
   /* outline: green solid 3px; */
   display: flex;
   height: 400px;
   width: 100%;
   overflow-y: scroll;
+  margin: 0%;
+}
+.descripcionCont{
+  display: flex;
+  height: 100%;
+  width: 100%;
   font-size: 1.25rem;
   color:  rgb(206, 206, 206);
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-  
+  margin: 10px;
 }
-
-
-
 .name{
+  /* outline: green solid 3px; */
   font-size: 2.5rem;
   display: flex;
   width: 100%;
+  height: 70px;
   background-color: #343434;
   color: rgb(206, 206, 206);
+  margin-top: 20px;
+  margin-bottom: 0%;
 }
-
-
+.nameCont{
+  margin-left: 10px;
+  font-size: 50px;
+  font-weight: bold;
+}
 
 .texto_comprar{
   /* outline: green solid 3px; */
@@ -144,14 +150,12 @@
   margin-left: 10px;
   font-size: 27px;
 }
-
 .texto_precio{
   /* outline: pink solid 3px; */
   display: flex;
   width: 45%;
   margin-left: 10px;
 }
-
 .texto_boton{
   /* outline: green solid 3px; */
   display: flex;
@@ -159,10 +163,8 @@
   height: 75%;
   margin-left: 10px;
   flex-direction: column;
-  margin-right: 10px;
-  
+  margin-right: 10px; 
 }
-
 .comprar{
   /* outline: rosybrown solid 3px; */
   display: flex;
@@ -171,19 +173,12 @@
   align-items: center;
   background-color: #343434;
   justify-content: center;
-
-
- 
 }
-
 .precio{
   display: flex;
   color: white;
-  outline: red solid 3px;
- 
-  
+  outline: red solid 3px;  
 }
-
 .div_comprar{
   /* outline: blue solid 3px; */
   display: flex;
@@ -195,7 +190,6 @@
   align-items: center;
   justify-content: space-around; 
 }
-
 .buttonadd{
   /* outline: yellow solid 3px; */
   display: flex;
@@ -209,11 +203,9 @@
   border: none;
   margin-right: 5px;
 }
-
 .buttonadd:hover {
   background-color: #45a049;
 }
-
 .buttonWish{
   /* outline: yellow solid 3px; */
   display: flex;
@@ -227,11 +219,9 @@
   border: none;
   margin-top: 2.5%;
 }
-
 .buttonWish:hover {
   background-color: #c69510;
 }
-
 .detail_container{
   /* outline: green solid 3px; */
   display: flex;
@@ -245,15 +235,11 @@
   max-height: fit-content;
   box-sizing: content-box;
 }
-
-
-
-
 .detail_left{
   /* outline: blue solid 3px; */
   display: flex;
-  /* height: 530px; */
-  min-height: 530px;
+  height: 560px;
+  /* min-height: 530px; */
   width: 48%;
   color: white;
   flex-direction: column;
@@ -262,17 +248,13 @@
   max-height: fit-content;
   box-sizing: content-box;
   margin:  3% 1.5rem;
- 
+  overflow-y: scroll;
 }
-
-
-
-
 .detail_rigth{
   /* outline: red solid 3px; */
   display: flex;
-  /* height: 530px; */
-  min-height: 530px;
+  height: 560px;
+  /* min-height: 530px; */
   width: 48%;
   color: white;
   flex-direction: column;
@@ -282,36 +264,26 @@
   box-sizing: content-box;
   margin:  3% 1.5rem;
 }
-
 .detail_left h2{
   font-size: 1.25rem;
   display: flex;
   margin:  10px;
-
 }
-
 .detail_rigth h2{
   font-size: 1.25rem;
   display: flex;
   margin:  10px;
-
 }
-
-
 .detail_left p{
   justify-content: center;
   text-align: left;
   margin: 0 10px;
 }
-
 .detail_rigth p{
   justify-content: center;
   text-align: left;
   margin: 0 10px;
 }
-
-
-
 .reviews_container{
   /* outline: yellow solid 3px; */
   display: flex;
@@ -321,10 +293,8 @@
   background-color: #232323;
   max-height: fit-content;
   box-sizing: content-box;
-  /* overflow: scroll; */
-  
+  /* overflow: scroll; */  
 }
-
 .promedio{
   /* outline: blue solid 3px; */
   display: flex;
@@ -335,21 +305,13 @@
   background-color: #343434;
   margin-left:  100px; 
   margin-top: 100px; 
-
 }
-
-
 .promedioInfo{
   /* outline: yellow solid 3px; */
   margin-left: 8%;
   margin-right: 8%;
-  flex-direction: column;
-
-  
+  flex-direction: column; 
 }
-
-
-
 .promedioNumber2{
   /* outline: pink solid 3px; */
   display: flex;
@@ -357,20 +319,15 @@
   margin-top: 0px;
   margin-bottom: 10px;
 }
-
-
-
 .cantidadReviews{
   /* outline: red solid 3px; */
   display: flex;
   font-size: 20px;
   margin-bottom: 10px;
 }
-
 .numeroReviews {
   margin-right: 7px;
 }
-
 .ratingCount {
   /* outline: pink solid 3px; */
   display: flex;
@@ -378,20 +335,16 @@
   margin-bottom: 10px;
   font-size: 20px;
 }
-
 .starRating {
   display: flex;
   align-items: center;
 }
-
 .ratingNumber {
   margin-right: 5px;
 }
-
 .star {
   color: white;
 }
-
 .bar {
   /* outline: green solid 3px; */
   flex-grow: 1;
@@ -399,18 +352,13 @@
   background-color: #232323;
   margin-left: 5px;
 }
-
 .fill {
   height: 100%;
   background-color: rgb(93, 93, 93);
 }
-
 .ratingPercentage {
   margin-left: 5px;
 }
-
-
-
 .opiniones{
   /* outline: green solid 3px; */
   display: flex;
@@ -422,26 +370,19 @@
   max-height: fit-content;
   box-sizing: content-box;
   margin:  100px;
-  overflow-y: scroll;
-  
+  overflow-y: scroll; 
 }
-
-
-
 .opinion{
   /* outline: yellow solid 3px; */
   display: flex;
-  min-height: 200px;
+   /* min-height: 200px; */
+  /* height: auto;  */
   width: 99.1%;
   color: white;
   background-color: #343434; 
   flex-direction: column;
   align-items: flex-start;
-  /* margin-left: 20px;
-  margin-right: 20px; */
-  /* overflow: hidden; */
 }
-
 .opiniontop{
   /* outline: white solid 3px; */
   height: 30%;
@@ -450,22 +391,20 @@
   flex-wrap: nowrap;
   margin: 10px;
 }
-
 .opinionback{
   /* outline: red solid 3px; */
-  height: 70%;
+  height: auto;
   width: 98%;
   margin: 10px;
+  word-wrap: break-word;
+  flex-grow: 1;
 }
 .opiniontopleft{
   /* outline: blue solid 3px; */
   height: 100%;
   width: 10%;
-  align-items: center;
-
-  
+  align-items: center;  
 }
-
 .opiniontopright{
   /* outline: pink solid 3px; */
   height: 100%;
@@ -475,20 +414,14 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
-
 .opiniontopright h3,
 .opiniontopright p {
   margin: 0;
 }
-
-
-
 .opinion h3,
 .opinion p:first-of-type {
   margin-bottom: 3px;
 }
-
-
 .profileImage{
   height: 70px;
   width: 70px;
