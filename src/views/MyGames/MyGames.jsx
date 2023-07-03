@@ -6,47 +6,47 @@ import { Link } from 'react-router-dom';
 
 const MyGames = () => {
 
-  //!revisar ruta al detail
   const games = useSelector(state => state.library);
-  const allGames = useSelector(state => state.games);
-  //console.log(allGames);
-  //console.log(games);
   const dataUser = JSON.parse(localStorage.getItem("user"));
   const ids = dataUser.id;
-  //console.log(ids);
+  const name = dataUser.name;
+  console.log(games);  
 
   const dispatch = useDispatch()
   
   useEffect(() => {
-      dispatch(act.getGames())
       dispatch(act.getMyGames(ids))
   }, [ids])
 
   const handleSend = (game) => {
-      dispatch(act.mandarAReview(game))
+    dispatch(act.mandarAReview(game))
   }
 
-  const handleEdit = (id) => {
-    const gameFilter = allGames.find(game => game.id === id)
-    if (gameFilter) {
-      console.log(gameFilter);
-      const review = gameFilter.Reviews[0]?.reviews
-      const rating = gameFilter.Reviews[0]?.rating
-      const id = gameFilter.Reviews[0]?.id
-      const idGame = gameFilter?.id
-      console.log({review, rating, id});
-      dispatch(act.getGameReview({review, rating, id, idGame}))
-    }
+  const handleEdit = (game) => {
+    const gameEdit = game
+    //! mañana agregar el resto de estados
+      if (gameEdit) {
+        console.log(gameEdit);
+        const review = gameEdit.Reviews[0]?.reviews
+        console.log(review);
+        const rating = gameEdit.Reviews[0]?.rating
+        const id = gameEdit.Reviews[0]?.id
+        const idGame = gameEdit?.id
+        console.log(review, rating, id, idGame);
+        dispatch(act.getGameReview({review, rating, id, idGame}))
+      }
   }
 
-  const handleDelete = (id) => {
-    const gameFilter = allGames.find(game => game.id === id)
-    if (gameFilter) {
-      const idRev = gameFilter?.Reviews[0]?.id
+  const handleDelete = (game) => {
+    const gameDelete = game
+      console.log(gameDelete);
+    if (gameDelete) {
+      const idRev = gameDelete.Reviews[0]?.id
       console.log(idRev);
       dispatch(act.getDeleteReview(idRev))
-    }
   }
+}
+
     
     //! agregar la ruta al detail
     return (
@@ -66,18 +66,17 @@ const MyGames = () => {
                     <button className={style.button} onClick={() => handleSend(game)}>New Review</button>
                 </Link>
                 <Link to={`/detail/reviews/${game.id}`}>
-                    <button className={style.button} onClick={() => {handleEdit(game.id, game.name)}}>Edit Review</button>
+                    <button className={style.button} onClick={() => {handleEdit(game)}}>Edit Review</button>
                 </Link>
-                <button className={style.buttonBorrar} onClick={() => handleDelete(game.id)}>x</button>
+                <button className={style.buttonBorrar} onClick={() => handleDelete(game)}>x</button>
               </div>
             </div>
           ))}
         </div>
         <div className={style}>
-            
         </div>
       </div>
     );
   }
 
-export default MyGames
+export default MyGames;

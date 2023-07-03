@@ -94,11 +94,11 @@
   transition: transform 0.3s ease-in-out;
 }
 .images:hover {
-  transform: scale(2);
+  transform: scale(1.5);
   transition: transform 0.8s ease-in-out;
 }
 .video:hover {
-  transform: scale(2);
+  transform: scale(1.5);
   transition: transform 0.8s ease-in-out; 
 }
 .descripcion{
