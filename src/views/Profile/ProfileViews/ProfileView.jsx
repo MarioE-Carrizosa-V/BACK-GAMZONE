@@ -21,9 +21,9 @@ const ProfileView = (props) => {
   useEffect(() => {
     dispatch(act.getUserStorage(datosUser?.id));
     dispatch(act.postLogin());
-    setNewName(datosUser?.name || "");
-    setNewUserName(datosUser?.user_name || "");
-    setNewCountry(datosUser?.country || "");
+    setNewName(datosUser?.name);
+    setNewUserName(datosUser?.user_name);
+    setNewCountry(datosUser?.country);
     return () => {
       dispatch(act.CleanDetail());
     };
@@ -31,23 +31,23 @@ const ProfileView = (props) => {
 
   const handleEditNameClick = () => {
     setEditingName(true);
-    setEditingUserName(false);
-    setEditingCountry(false);
-    setNewName(datosUser?.name || "");
+//    setEditingUserName(false);
+//    setEditingCountry(false);
+    setNewName(datosUser?.name);
   };
 
   const handleEditUserNameClick = () => {
-    setEditingName(false);
+//    setEditingName(false);
     setEditingUserName(true);
-    setEditingCountry(false);
-    setNewUserName(datosUser?.user_name || "");
+//    setEditingCountry(false);
+    setNewUserName(datosUser?.user_name);
   };
 
   const handleEditCountryClick = () => {
-    setEditingName(false);
-    setEditingUserName(false);
+//    setEditingName(false);
+//    setEditingUserName(false);
     setEditingCountry(true);
-    setNewCountry(datosUser?.country || "");
+    setNewCountry(datosUser?.country);
   };
 
   const handleSaveClick = () => {
@@ -72,9 +72,9 @@ const ProfileView = (props) => {
     setEditingName(false);
     setEditingUserName(false);
     setEditingCountry(false);
-    setNewName(datosUser?.name || "");
-    setNewUserName(datosUser?.user_name || "");
-    setNewCountry(datosUser?.country || "");
+    setNewName(datosUser?.name);
+    setNewUserName(datosUser?.user_name);
+    setNewCountry(datosUser?.country);
   };
 
   const handleNameChange = (e) => {

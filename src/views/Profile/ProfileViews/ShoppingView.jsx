@@ -45,7 +45,7 @@ const ShoppingView = () => {
   return (
     <form onSubmit={handleSubmit} >
       <div>
-        <input id="file-upload" type="file" accept="image/*" name="file" multiple='true' onChange={handleImageChange} className={style.fileInput}/>
+        <input id="file-upload" type="file" accept="image/*" name="file" multiple={true} onChange={handleImageChange} className={style.fileInput}/>
       </div>
       <br/>
       { selectedImage && <label className={style.label}>{selectedImage?.name}</label> }
