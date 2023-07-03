@@ -9,6 +9,11 @@ const ShoppingView = () => {
   const handleImageChange = (event) => {
     setSelectedImage(event.target.files[0]);
   };
+  console.log(selectedImage?.name);
+
+  const deleteImage = () =>{
+    setSelectedImage(null)
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -16,6 +21,7 @@ const ShoppingView = () => {
     try {
       const formData = new FormData();
       formData.append('file', selectedImage);
+      console.log(selectedImage);
 
       const response = await axios.post('http://localhost:3001/upload', formData, {
         headers: {
@@ -39,10 +45,13 @@ const ShoppingView = () => {
   return (
     <form onSubmit={handleSubmit} >
       <div>
-      <input type="file" accept="image/*" name="file" onChange={handleImageChange} className={style.fileInput}/>
+        <input id="file-upload" type="file" accept="image/*" name="file" multiple='true' onChange={handleImageChange} className={style.fileInput}/>
       </div>
+      <br/>
+      { selectedImage && <label className={style.label}>{selectedImage?.name}</label> }
+      { selectedImage && <button className={style.imagebuton} onClick={() => deleteImage()}> Cancel </button>}
       <div>
-      <button type="submit" className={style.imagebuton} >Subir imagen</button>
+        <button type="submit" className={style.imagebuton} >Subir imagen</button>
       </div>
     </form>
   );

@@ -422,7 +422,7 @@ export const postLogin = (datos) =>{
                 payload : userTwo.data
             })
         } catch (error) {
-            console.log(error.response.data)
+            console.log(error?.response?.data)
             //return dispatch({
             //    type : LOGIN_USER,
             //    payload : error.response.data
