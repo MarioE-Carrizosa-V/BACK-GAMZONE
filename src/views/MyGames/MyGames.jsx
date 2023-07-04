@@ -3,14 +3,17 @@ import style from "./MyGames.module.css"
 import * as act from "../../redux/actions"
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const MyGames = () => {
 
   const games = useSelector(state => state.library);
+  console.log(games);
   const dataUser = JSON.parse(localStorage.getItem("user"));
+  //console.log(dataUser);
   const ids = dataUser.id;
-  const name = dataUser.name;
-  console.log(games);  
+  const user = dataUser.name;
+  //console.log(user);  
 
   const dispatch = useDispatch()
   
@@ -19,35 +22,54 @@ const MyGames = () => {
   }, [ids])
 
   const handleSend = (game) => {
+    //! 1 review por persona
     dispatch(act.mandarAReview(game))
   }
 
   const handleEdit = (game) => {
-    const gameEdit = game
-    //! mañana agregar el resto de estados
+    const gameEdit = game;
       if (gameEdit) {
-        console.log(gameEdit);
-        const review = gameEdit.Reviews[0]?.reviews
-        console.log(review);
-        const rating = gameEdit.Reviews[0]?.rating
-        const id = gameEdit.Reviews[0]?.id
-        const idGame = gameEdit?.id
-        console.log(review, rating, id, idGame);
-        dispatch(act.getGameReview({review, rating, id, idGame}))
+        for (let i = 0; i < gameEdit.Reviews.length; i++) {
+          let userEdit = gameEdit.Reviews[i]?.Users[0].name
+          if (userEdit === user) {
+            const review = gameEdit.Reviews[i]?.reviews;
+            const rating = gameEdit.Reviews[i]?.rating;
+            const id = gameEdit.Reviews[i]?.id;
+            const idGame = gameEdit?.id;
+            dispatch(act.getGameReview({review, rating, id, idGame}))
+          }
+        }
       }
+      Swal.fire({
+        position: 'center',
+        icon: 'question',
+        title: 'sin reviews para editar',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      return
   }
 
   const handleDelete = (game) => {
-    const gameDelete = game
-      console.log(gameDelete);
+    const gameDelete = game 
     if (gameDelete) {
-      const idRev = gameDelete.Reviews[0]?.id
-      console.log(idRev);
-      dispatch(act.getDeleteReview(idRev))
+      for (let i = 0; i < gameDelete.Reviews.length; i++) {
+        let userD = gameDelete.Reviews[i]?.Users[0].name
+        if (userD === user) {
+          let idD = gameDelete.Reviews[i]?.id
+          dispatch(act.getDeleteReview(idD))
+        }
+      }
+      Swal.fire({
+        position: 'center',
+        icon: 'question',
+        title: 'No reviews added',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      return
   }
 }
-
-    
     //! agregar la ruta al detail
     return (
         <div className={style.container}>
