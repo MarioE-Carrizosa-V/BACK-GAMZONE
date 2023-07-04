@@ -21,10 +21,10 @@ const Home = () => {
   
   useEffect(() => {
     dispatch(act.getGames());
-    dispatch(act.getGamesOffer());
-    dispatch(act.getGamesNewReleases());
-    dispatch(act.getGamesComingSoon());
-    dispatch(act.getGamesTopSellers());
+    // dispatch(act.getGamesOffer());
+    // dispatch(act.getGamesNewReleases());
+    // dispatch(act.getGamesComingSoon());
+    // dispatch(act.getGamesTopSellers());
     dispatch(act.clearSearch());
     // dispatch(act.preload());
   }, [dispatch]);
@@ -49,9 +49,12 @@ const Home = () => {
   };
 
   // Verificar si el array de juegos tiene al menos 14 elementos
-  const selectedGames = games.length >= 12 ? games.slice(0, 12) : games;
+  const selectedGames = games.length >= 18 ? games.slice(0, 18) : games;
+  const frees = games.filter(game => game.is_free === true);
+  const type = games.filter(game => game.type === "demo" || game.type === "dlc");
+  const controllerSupport = games.filter(game => game.controller_support === "full");
 
-  //console.log(search)
+  console.log(selectedGames)
   return (
     <div className={style.homeContainer}>
       <Carousel />
@@ -76,12 +79,18 @@ const Home = () => {
         <h3 className={style.title}>All Games</h3>
         <CardsContainer gameComingSoon={selectedGames} />
       </div>
-      <h3 className={style.title}>Top Sells</h3>
+      <h3 className={style.title}>Free</h3>
+        <CardsContainer gameComingSoon={frees} />
+        <h3 className={style.title}>Demos y DLCs</h3>
+        <CardsContainer gameComingSoon={type} />
+        <h3 className={style.title}>Controllers</h3>
+        <CardsContainer gameComingSoon={controllerSupport} />
+      {/* <h3 className={style.title}>Top Sells</h3>
       <CardsContainer gameComingSoon={gamesTopSellers} />
       <h3 className={style.title}>Game Offers</h3>
       <CardsContainer gameComingSoon={gameOffer} />
       <h3 className={style.title}>New Releases</h3>
-      <CardsContainer gameComingSoon={gamesNewReleases} />
+      <CardsContainer gameComingSoon={gamesNewReleases} /> */}
     </div>
   );
 };

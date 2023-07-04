@@ -56,7 +56,10 @@
     }
 
 .image{
+    /* border: red solid 3px; */
     border-radius: 10px;
+    height: 400px;
+    width: auto;
 }
 .tarjeta{
     cursor: pointer;

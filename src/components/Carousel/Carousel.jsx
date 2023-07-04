@@ -7,17 +7,19 @@ import punto from "../../assets/punto.png";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Carousel = () => {
+     const games = useSelector(state => state.games);
 const dispatch = useDispatch();
-const gameComingSoon = useSelector((state) => state.gameComingSoon);
-
 useEffect(() => {
-    dispatch(act.getGamesComingSoon());
-}, [dispatch]);
+    dispatch(act.getGames());
+    // dispatch(act.clearSearch());
+  }, [dispatch]);
+
+
 
 const [currentCard, setCurrentCard] = useState(1);
 const [charactersPerPage, setCharacterPerPage] = useState(1);
 
-const totalCards = gameComingSoon && Math.ceil(gameComingSoon.length / charactersPerPage);
+const totalCards = games && Math.ceil(games.length / charactersPerPage);
 
 const handleNextCard = () => {
     if (currentCard < totalCards) {
@@ -40,7 +42,7 @@ const handleGoToCard = (cardNumber) => {
 };
 
 useEffect(() => {
-    if (gameComingSoon && gameComingSoon.length > 0) {
+    if (games && games.length > 0) {
         const interval = setInterval(() => {
             handleNextCard();
         }, 4000);
@@ -49,12 +51,12 @@ useEffect(() => {
             clearInterval(interval);
         };
     }
-}, [currentCard, gameComingSoon]);
+}, [currentCard, games]);
 
     const indexOfLastCharacter = currentCard * charactersPerPage;
     const indexOfFirstCharacter = indexOfLastCharacter - charactersPerPage;
-    const currentCharacters = gameComingSoon
-    ? gameComingSoon.slice(indexOfFirstCharacter, indexOfLastCharacter)
+    const currentCharacters = games
+    ? games.slice(indexOfFirstCharacter, indexOfLastCharacter)
     : [];
 
     const history = useHistory()
@@ -72,7 +74,7 @@ return (
 
         <div key={index} className={style.tarjeta} onClick={() => {handleClick(character.id)}} >
             <h3 className={style.name}>{character.name}</h3>
-            <img className={style.image} src={character.large_capsule_image} alt={character.name} />
+            <img className={style.image} src={character.header_image} alt={character.name} />
             
 
         </div>
