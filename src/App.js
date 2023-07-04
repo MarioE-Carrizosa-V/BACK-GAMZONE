@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { Route, useLocation } from 'react-router-dom';
+import { Route, useLocation, Switch } from 'react-router-dom';
 import { Landing, Home, ShoppingCart, Detail, Whishlist , Form} from "./views";
 import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
@@ -15,6 +15,10 @@ import Terms from './views/FooterViews/Terms and conditions/Terms';
 import AboutUs from './views/FooterViews/About us/AboutUs';
 import Contact from './views/FooterViews/Contact/Contact';
 import {TableDb} from './views/Adm/Tablas/TableGames';
+import ChangePassword from './views/Profile/ProfileViews/changePassword.jsx';
+import ForgotPassword from './views/Form/ForgotPassword/forgotPassword';
+import PasswordReset from './views/Form/passwordReset/passwordReset';
+import Error from './views/Error/error';
 
 function App() {
 
@@ -27,24 +31,29 @@ return (
     </head>
     <>
     {location.pathname !== "/" && location.pathname !== "/dashboard" && location.pathname !== "/TABLA" && <NavBar />}
-      <Route exact path="/" render={() => <Landing/>} />
-      <Route path="/home" render={() => <Home/>}/>
-      <Route path="/cart" render={() => <ShoppingCart/>} /> 
-      <Route path="/login" render={() => <Form/>} /> 
-      <Route exact path="/detail/:id" render={(routeProps) => <Detail {...routeProps} />} />
-      <Route path="/whishlist" render={() => <Whishlist />} />
-      <Route path="/dashboard" render={() => <Dashboard />} />
-      <Route path="/search" render={() => <Search />} />
-      <Route path="/review" render={() => <Review />} />
-      <Route path="/library" render={() => <MyGames />}/>
-      {/* <Route path="/pruebas" render={() => <ShoppingView />}/> */}
-      <Route path="/detail/reviews/:id" render={() => <ReviewsModif />} />
-      <Route path="/user" render={(routeProps) => <Profile {...routeProps} />} />
-      <Route path="/terms" render={() => <Terms />} />
-      <Route path="/aboutus" render={() => <AboutUs />} />
-      <Route path="/contact" render={() => <Contact />} />
-      <Route path="/TABLA" render={() => <TableDb />}/>
-
+    <Switch>
+        <Route exact path="/" render={() => <Landing/>} />
+        <Route path="/home" render={() => <Home/>}/>
+        <Route path="/cart" render={() => <ShoppingCart/>} /> 
+        <Route path="/login" render={() => <Form/>} /> 
+        <Route exact path="/detail/:id" render={(routeProps) => <Detail {...routeProps} />} />
+        <Route path="/whishlist" render={() => <Whishlist />} />
+        <Route path="/dashboard" render={() => <Dashboard />} />
+        <Route path="/search" render={() => <Search />} />
+        <Route path="/review" render={() => <Review />} />
+        <Route path="/library" render={() => <MyGames />}/>
+        {/* <Route path="/pruebas" render={() => <ShoppingView />}/> */}
+        <Route path="/detail/reviews/:id" render={() => <ReviewsModif />} />
+          <Route path="/segurity" render={() => <ChangePassword/>} />
+          <Route path="/forgotPassword" render={() => <ForgotPassword/>} />
+          <Route exact path="/reset-password/:id/:token" render={() => <PasswordReset/>} />
+          <Route path="*" render={() => <Error/>} />
+        <Route path="/user" render={(routeProps) => <Profile {...routeProps} />} />
+        <Route path="/terms" render={() => <Terms />} />
+        <Route path="/aboutus" render={() => <AboutUs />} />
+        <Route path="/contact" render={() => <Contact />} />
+        <Route path="/TABLA" render={() => <TableDb />}/>
+      </Switch>
       {location.pathname !== "/dashboard" && <Footer/>}
     </>
   </div>

@@ -6,6 +6,7 @@ import ProfileView from "./ProfileViews/ProfileView";
 import ReviewsView from "./ProfileViews/ReviewsView";
 import * as act from "../../redux/actions";
 import MyGames from "../MyGames/MyGames";
+import ChangePassword from "./ProfileViews/changePassword";
 
 const Profile = (props) => { // Agrega props como parámetro
   const [activeOption, setActiveOption] = useState("profile");
@@ -17,6 +18,8 @@ const Profile = (props) => { // Agrega props como parámetro
         //? cambie el redireccionamiento, porque no se llama mas shopping es la biblioteca asjhdgas
       case "library":
         return <MyGames />;
+        case "segurity":
+        return <ChangePassword />
       case "reviews":
         return <ReviewsView />;
       default:
@@ -43,13 +46,12 @@ const Profile = (props) => { // Agrega props como parámetro
                 <span className={styles.nav_text}>MyGames</span>
               </a>
             </li>
-            {/* <li className="has-subnav">
-              <a href="/review" onClick={() => setActiveOption("reviews")}>
-                <i className={`fa fa-star ${styles["fa-2x"]}`}></i>
-                <span className={styles.nav_text}>Reviews</span>
+            <li className="has-subnav">
+              <a href="/segurity" onClick={() => setActiveOption("segurity")}>
+                <i className={`fa fa-lock ${styles["fa-2x"]}`}></i>
+                <span className={styles.nav_text}>Security and Password</span>
               </a>
-            </li> */}
-            {/* More menu options */}
+            </li>
           </ul>
           <ul className="logout">
             <li>

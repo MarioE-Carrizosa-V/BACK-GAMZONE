@@ -30,8 +30,8 @@ const initialState = {
     library: [],
     review: [],
     deleteReview: null,
-    gamesAdmin: []
-    
+    gamesAdmin: [],
+    errorBack : null    
 };
 
 const rootReducer=(state = initialState, action) => {
@@ -44,6 +44,12 @@ const rootReducer=(state = initialState, action) => {
                         gamesAdmin: action.payload
                     }
         
+        //case error
+        case act.ERROR:
+                return {
+                    ...state,
+                    errorBack : action.payload
+                }
         //filtros de busqueda
 
         case act.FILTER_LANGUAGES:

@@ -272,7 +272,7 @@ const Form = () => {
       )
 
       await dispatch(postCreateUser(datos))
-      history.push("/login")
+      history.push("/form")
     }
 
     // Realizar la acción de envío del formulario aquí
@@ -425,7 +425,7 @@ const Form = () => {
                 <i className={`fa fa-google-plus-square ${styles["btnTwo"]}`} aria-hidden="true" > Continue with Google</i>
               </a>
             </li>
-            <a href="#" className={styles.link}>Forgot your password?</a>
+            <a href="/forgotPassword" className={styles.link}>Forgot your password?</a>
             <button className={styles.btn}>Sign In</button>
           </form>
         </div>
