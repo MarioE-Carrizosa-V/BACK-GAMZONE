@@ -30,9 +30,13 @@ const Footer = () => {
                         <a href="https://www.facebook.com/profile.php?id=100094378233290" target="_blank" rel="noopener noreferrer">
                         <FontAwesomeIcon icon={faFacebook} size="xl" />
                         </a>
+                        <a href="https://www.instagram.com/gamezonecorporation/" target="_blank" rel="noopener noreferrer">
                         <FontAwesomeIcon icon={faInstagram} size="xl"/>
+                        </a>
 
                     </div>
+
+                    
 
             
         </div>

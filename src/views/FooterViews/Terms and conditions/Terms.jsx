@@ -1,11 +1,18 @@
+import { useHistory } from 'react-router-dom';
 import style from "./Terms.module.css";
 
 const Terms = () => {
+    const history = useHistory();
+
+    const handleGoBack = () => {
+        history.goBack();
+      };
 
     return(
         
         <div className={style.container}>
             <br />
+            <button className={`fa fa-arrow-circle-left ${style["backButton"]}`} onClick={() => handleGoBack()}></button>
             <div className={style.title}>
             <p>TERMS AND CONDITIONS</p>
             </div>

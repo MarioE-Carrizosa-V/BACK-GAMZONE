@@ -1,12 +1,20 @@
+import { useHistory } from 'react-router-dom';
 import style from "./AboutUs.module.css";
 
 
 
 
 const AboutUs = () => {
+    const history = useHistory();
+
+    const handleGoBack = () => {
+        history.goBack();
+      };
 
     return(
         <div className={style.container}>
+            <br />
+            <button className={`fa fa-arrow-circle-left ${style["backButton"]}`} onClick={() => handleGoBack()}></button>
             <div className={style.title}>
             <p>ABOUT US</p>
             </div>

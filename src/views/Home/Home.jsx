@@ -50,9 +50,15 @@ const Home = () => {
 
   // Verificar si el array de juegos tiene al menos 14 elementos
   const selectedGames = games.length >= 18 ? games.slice(0, 18) : games;
-  const frees = games.filter(game => game.is_free === true);
-  const type = games.filter(game => game.type === "demo" || game.type === "dlc");
-  const controllerSupport = games.filter(game => game.controller_support === "full");
+  const frees = games.filter(game => game.is_free === true && game.price_overview >= 0)
+  const type =   games.filter(game => game.type === "demo" || game.type === "dlc");
+  const controllerSupport =  games.filter(game => game.controller_support === "full");
+
+  const frees2 =  frees.slice(0, 12);
+  const type2 = type.slice(0, 12);
+  const controllerSupport2 = controllerSupport.slice(0, 12) ;
+
+
 
   console.log(selectedGames)
   return (
@@ -80,11 +86,11 @@ const Home = () => {
         <CardsContainer gameComingSoon={selectedGames} />
       </div>
       <h3 className={style.title}>Free</h3>
-        <CardsContainer gameComingSoon={frees} />
-        <h3 className={style.title}>Demos y DLCs</h3>
-        <CardsContainer gameComingSoon={type} />
+        <CardsContainer gameComingSoon={frees2} />
+        <h3 className={style.title}>Demos and DLCs</h3>
+        <CardsContainer gameComingSoon={type2} />
         <h3 className={style.title}>Controllers</h3>
-        <CardsContainer gameComingSoon={controllerSupport} />
+        <CardsContainer gameComingSoon={controllerSupport2} />
       {/* <h3 className={style.title}>Top Sells</h3>
       <CardsContainer gameComingSoon={gamesTopSellers} />
       <h3 className={style.title}>Game Offers</h3>
