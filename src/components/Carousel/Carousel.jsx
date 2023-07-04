@@ -7,7 +7,9 @@ import punto from "../../assets/punto.png";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Carousel = () => {
-     const games = useSelector(state => state.games);
+    const games2 = useSelector(state => state.games);
+    const gamesfiltered = games2.filter(games => games.coming_soon === true)
+    const games = gamesfiltered.slice(0, 9);
 const dispatch = useDispatch();
 useEffect(() => {
     dispatch(act.getGames());

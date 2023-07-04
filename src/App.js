@@ -70,11 +70,14 @@ import NavBar from './components/NavBar/NavBar';
 import Dashboard from './views/Adm/adm';
 import Search from "./views/Search/Search"
 import Review from './views/Reviews/Reviews';
-
 import Profile from './views/Profile/Profile';
 import MyGames from './views/MyGames/MyGames';
-
+import ReviewsModif from './views/Reviews/ReviewsModif';
 import ShoppingView from './views/Profile/ProfileViews/ShoppingView';
+import Terms from './views/FooterViews/Terms and conditions/Terms';
+import AboutUs from './views/FooterViews/About us/AboutUs';
+import Contact from './views/FooterViews/Contact/Contact';
+import {TableDb} from './views/Adm/Tablas/TableGames';
 import ChangePassword from './views/Profile/ProfileViews/changePassword';
 import ForgotPassword from './views/Form/ForgotPassword/forgotPassword';
 import PasswordReset from './views/Form/passwordReset/passwordReset';
@@ -104,7 +107,12 @@ return (
         <Route path="/review" render={() => <Review />} />
         <Route path="/library" render={() => <MyGames />}/>
         <Route path="/pruebas" render={() => <ShoppingView />}/>
+        <Route path="/detail/reviews/:id" render={() => <ReviewsModif />} />
         <Route path="/segurity" render={() => <ChangePassword/>} />
+        <Route path="/terms" render={() => <Terms />} />
+          <Route path="/aboutus" render={() => <AboutUs />} />
+          <Route path="/contact" render={() => <Contact />} />
+          <Route path="/TABLA" render={() => <TableDb />}/>
         <Route path="/forgotPassword" render={() => <ForgotPassword/>} />
         <Route exact path="/reset-password/:id/:token" render={() => <PasswordReset/>} />
         <Route path="/user" render={(routeProps) => <Profile {...routeProps} />} />
