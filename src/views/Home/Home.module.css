@@ -48,3 +48,15 @@
     background-color: rgb(83, 83, 83);
     transition: 500ms;
 }
+
+.cargando{
+    color: antiquewhite;
+    font-size: 50px;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
