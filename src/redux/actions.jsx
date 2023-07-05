@@ -59,7 +59,7 @@ export const SET_TOTALPRICE = "SET_TOTALPRICE";
 export const loginGoogleFirebase = (datosGoogle) => {
     return async function (dispatch) {
         try {
-            const login = await axios.post("http://localhost:3001/firebaseGoogle", datosGoogle)
+            const login = await axios.post("https://back-gamezone-y96h.onrender.com/firebaseGoogle", datosGoogle)
             //console.log(login)
             console.log(login.data)
             return dispatch({
