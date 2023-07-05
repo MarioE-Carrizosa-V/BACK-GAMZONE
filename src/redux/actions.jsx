@@ -52,7 +52,8 @@ export const ALLGAMESADMIN = "ALLGAMESADMIN";
 export const ERROR = "ERROR";
 export const SET_CART = "SET_CART";
 export const SET_TOTALPRICE = "SET_TOTALPRICE";
-
+export const SET_WHISH_LIST = "SET_WHISH_LIST";
+export const SET_COUNTER = "SET_COUNTER";
 
 
 //google
@@ -507,24 +508,58 @@ export const freeOrder = (totalPrice, cartGames, dataUser) => {
 
 //? FUNCIONES DE LA LISTA DE DESEADOS
 
-export const addWhishList = (game) => {
-    return function (dispatch) {
-        //console.log(game);
-        dispatch({
-            type: ADD_TO_WHISH_LIST,
-            payload: game
-        })
-    }
-}
-
-export const removeWhishList = (id) => {
-    return function (dispatch) {
-        dispatch({
-            type: REMOVE_TO_WHISH_LIST,
-            payload: id
-        })
-    }
-}
+export const setCounter = (c) => {
+    return function (dispatch, getState) {
+      dispatch({
+        type: SET_COUNTER,
+        payload: c,
+      });
+  
+      const counter = getState().counter;
+      localStorage.setItem("counter", JSON.stringify(counter));
+    };
+  };
+  
+  export const setWhishList = (list) => {
+    return function (dispatch, getState) {
+      dispatch({
+        type: SET_WHISH_LIST,
+        payload: list,
+      });
+  
+      const lists = getState().whishList;
+      localStorage.setItem("whishList", JSON.stringify(lists));
+    };
+  };
+  
+  export const addWhishList = (game) => {
+    return function (dispatch, getState) {
+      //console.log(game);
+      dispatch({
+        type: ADD_TO_WHISH_LIST,
+        payload: game,
+      });
+  
+      const lists = getState().whishList;
+      localStorage.setItem("whishList", JSON.stringify(lists));
+      const counter = getState().counter;
+      localStorage.setItem("counter", JSON.stringify(counter));
+    };
+  };
+  
+  export const removeWhishList = (id) => {
+    return function (dispatch, getState) {
+      dispatch({
+        type: REMOVE_TO_WHISH_LIST,
+        payload: id,
+      });
+  
+      const lists = getState().whishList;
+      localStorage.setItem("whishList", JSON.stringify(lists));
+      const counter = getState().counter;
+      localStorage.setItem("counter", JSON.stringify(counter));
+    };
+  };
 
 //? Action de Create User
 

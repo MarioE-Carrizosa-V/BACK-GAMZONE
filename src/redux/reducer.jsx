@@ -366,6 +366,19 @@ case act.SET_TOTALPRICE:
         error: null,
       };
 //? CASOS DE LA LISTA DE DESEADOS
+        case act.SET_COUNTER:
+              console.log(action.payload);
+              return {
+                ...state,
+                counter: action.payload,
+              };
+            
+        case act.SET_WHISH_LIST:
+          console.log(action.payload);
+          return {
+            ...state,
+            whishList: action.payload,
+      };
         case act.ADD_TO_WHISH_LIST:
             const addList = action.payload
             const gameInWhishList = state.whishList.find(game => game.id === addList.id);
