@@ -48,13 +48,154 @@ export const GETGAMEREVIEW = "GETGAMEREVIEW";
 export const MANDARREVIEW = "MANDARREVIEW";
 export const DELETEREVIEW = "DELETEREVIEW";
 export const FREE_ORDER = "FREE_ORDER";
-export const ALLGAMESADMIN = "ALLGAMESADMIN";
 export const ERROR = "ERROR";
 export const SET_CART = "SET_CART";
 export const SET_TOTALPRICE = "SET_TOTALPRICE";
 export const SET_WHISH_LIST = "SET_WHISH_LIST";
 export const SET_COUNTER = "SET_COUNTER";
+export const ALLGAMESADMIN = "ALLGAMESADMIN";
+export const EDITGAMESADMIN = "EDITGAMESADMIN"
+export const INFOGAMES = "INFOGAMES";
+export const BANGAMES = "BANGAMES";
+export const DELETEGAME = "DELETEGAME";
+export const GETALLUSERS = "GETALLUSERS";
+export const EDITDATAUSER = "EDITDATAUSER";
+export const DELETEDATAUSER = "CLEANDATAUSER";
+export const SET_USERS = "SET_USERS";
+export const DELETE_USER = "DELETE_USER";
+export const BAN_USER = "BAN_USER";
 
+//adm
+export const allGamesAdmin = () => {
+    const endpoint = `allGamesAdmin`;
+    return async (dispatch) => {
+        const {data} = await axios.get(endpoint);
+        return dispatch({
+            type: ALLGAMESADMIN,
+            payload: data
+        })
+    }
+}
+
+
+export const gamesBanAdmin = (id) => {
+    const endpoint = `/games/${id}/ban`;
+    return async (dispatch) => {
+        const {data} = await axios.put(endpoint);
+        return dispatch({
+            type: BANGAMES,
+            payload: data
+        })
+    }
+}
+
+
+
+export const infoGamesAdmin = (id) => {
+    const endpoint = `games/${id}`;
+    return async (dispatch) => {
+        const {data} = await axios.get(endpoint);
+        return dispatch({
+            type: INFOGAMES,
+            payload: data
+        })
+    }
+}
+
+
+
+//userlist
+export const getUsers = () => {
+    const endpoint = `https://back-gamezone-y96h.onrender.com/users`;
+    return async (dispatch) => {
+        const {data} = await axios.get(endpoint);
+        console.log("SSSSSSSS", data);
+        return dispatch({
+            type: GETALLUSERS,
+            payload: data
+        })
+    }
+}
+
+export const editUser = (id, updatedUser) => {
+    return async (dispatch) => {
+      try {
+        const endpoint = `https://back-gamezone-y96h.onrender.com/users/${id}`;
+        const response = await axios.put(endpoint, updatedUser);
+  
+        dispatch(getUsers());
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+  };
+  
+
+  export const setUsers = (users) => {
+    return { type: SET_USERS, payload: users };
+  };
+  
+  export const deleteUser = (id) => {
+    return async function(dispatch) {
+      try {
+        const endpoint = `https://back-gamezone-y96h.onrender.com/users/${id}`;
+        await axios.delete(endpoint);
+        dispatch({ type: 'DELETEDATAUSER' });
+      } catch (error) {
+        console.error('Error al eliminar el usuario:', error);
+        
+      }
+    };
+  };
+  
+  export const banUser = (userId, banStatus) => {
+    return (dispatch) => {
+    
+      fetch(`https://back-gamezone-y96h.onrender.com/users/${userId}/ban`, { 
+        method: 'PUT',
+        body: JSON.stringify({ ban: banStatus }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+         
+          dispatch({ type: BAN_USER, payload: { userId, banStatus } });
+        })
+        .catch((error) => {
+         
+          console.error('Error al banear el usuario:', error);
+         
+        });
+    };
+  };
+
+
+
+export const editGamesAdmin = (id, gameData) => {
+    const endpoint = `games/${id}`;
+    return async (dispatch) => {
+        const {data} = await axios.put(endpoint, gameData);
+        return dispatch({
+            type: EDITGAMESADMIN,
+            payload: data
+        })
+    }
+}
+
+
+
+export const deleteGamesAdmin = (id) => {
+    const endpoint = `games/${id}`;
+    return async (dispatch) => {
+        const {data} = await axios.delete(endpoint);
+        return dispatch({
+            type: DELETEGAME,
+            payload: data
+        })
+    }
+}
 
 //google
 export const loginGoogleFirebase = (datosGoogle) => {
@@ -150,17 +291,6 @@ export const setError = (error) => {
     };
 };
 
-
-export const allGamesAdmin = () => {
-    const endpoint = allGamesAdmin;
-    return async (dispatch) => {
-        const {data} = await axios.get(endpoint);
-        return dispatch({
-            type: ALLGAMESADMIN,
-            payload: data
-        })
-    }
-}
 
 
 //! ARREGLAR TODAS LAS RUTAS Y REDUCER DEL RAILWAY

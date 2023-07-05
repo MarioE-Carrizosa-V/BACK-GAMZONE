@@ -31,18 +31,103 @@ const initialState = {
     review: [],
     deleteReview: null,
     gamesAdmin: [],
-    errorBack : null    
+    errorBack : null,
+    gamesAdmin: [],
+    gamesInfoId: {},
+    gamesDeleteAdmin: {},
+    editGamesAdmin: [],
+    banGames: {},  
+    allusers: [],
+    users: [],
 };
 
 const rootReducer=(state = initialState, action) => {
     switch(action.type) {
+
+
+        //adm
+        case act.ALLGAMESADMIN:
+                return {
+                    ...state,
+                    gamesAdmin: action.payload
+                }
+        
+            case act.INFOGAMES:
+                return {
+                    ...state,
+                    gamesInfoId: action.payload
+                }
+
+            case act.BANGAMES:
+                return {
+                    ...state,
+                    banGames: action.payload
+                }
+
+            case act.DELETEGAME:
+                return {
+                    ...state,
+                    gamesDeleteAdmin: action.payload
+                }
+                
+            case act.EDITGAMESADMIN:
+                return {
+                    ...state,
+                    editGamesAdmin: action.payload
+                }
+
+        //? CASOS DE LA BIBLIOTECA
+
+        case act.GET_MYGAMES:
+          return {
+              ...state,
+              library: action.payload
+          }
+        //? CASO ADMIN ***
+        case act.GETALLUSERS:
+          return {
+              ...state,
+              allusers: action.payload
+          }
+        
+        case act.EDITDATAUSER:
+          return {
+              ...state,
+              user: {
+                  ...state.user,
+                  ...action.payload,
+              },
+          }
+        
+        case act.SET_USERS:
+          return {
+              ...state,
+              users: action.payload,
+          };
+        
+        case act.DELETEDATAUSER:
+          return {
+              ...state,
+              // Puedes realizar otras actualizaciones del estado aquí si es necesario
+          };
+        
+        case act.BAN_USER:
+          const { userId, banStatus } = action.payload;
+          const updatedUsers = state.users.map((user) => {
+              if (user.id === userId) {
+                  return {
+                      ...user,
+                      ban: banStatus,
+                  };
+              }
+              return user;
+          });
+          return {
+              ...state,
+              users: updatedUsers,
+          }
         //filtros combinadosconst combtype = "COMBTYPE"
         
-        case act.ALLGAMESADMIN:
-                    return {
-                        ...state,
-                        gamesAdmin: action.payload
-                    }
         
         //case error
         case act.ERROR:
