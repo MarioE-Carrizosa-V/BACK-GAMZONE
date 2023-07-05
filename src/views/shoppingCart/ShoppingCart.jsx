@@ -14,30 +14,27 @@ const ShoppingCart = () => {
   const totalPrices = parseFloat(totalPrice).toFixed(2);
   const history = useHistory()
   const dataUser = JSON.parse(localStorage.getItem("user"));
+  //console.log(dataUser);
 
-  // useEffect(() => {
-  //   const storedCart = localStorage.getItem("cart");
-  //   console.log(storedCart);
-  //   if (storedCart) {
-  //     const parsedCart = JSON.parse(storedCart);
-  //     // Agregar el carrito recuperado al estado del carrito en Redux
-  //     dispatch(act.setCart(parsedCart));
-  //     // Borrar el carrito del localStorage
-  //     localStorage.removeItem("cart");
-  //   }
-  // }, []);
+  //? IMPLEMENTACION DEL USEEFFECT
+  useEffect(() => {
+    //json.stringfile guardar, json.parse obtengo
+    const storedCart = localStorage.getItem("cart");
+    console.log(storedCart);
+    if (storedCart) {
+      dispatch(act.setCart(JSON.parse(storedCart)))
+    }
+  }, [])
 
-  // useEffect(() => {
-  //   // Calcular el precio total cada vez que el carrito cambie
-  //   const totalPrices = cart.reduce(
-  //     (total, game) =>
-  //       total + parseFloat(game.price_overview || game.price || game.final_price),
-  //     0
-  //   );
-  //   dispatch(act.setTotalPrice(totalPrices.toFixed(2)));
-  // }, [cart]);
+  useEffect(() => {
 
-  //! no deberia borrar si no hay nada, METER EL CAMBIO
+    const stored = localStorage.getItem("total");
+    console.log(stored);
+    if (stored) {
+      dispatch(act.setTotalPrice(JSON.parse(stored)))
+    }
+  }, [totalPrices])
+
   const handleRemove = () => {
     Swal.fire({
         title: 'Are you sure?',
@@ -56,6 +53,8 @@ const ShoppingCart = () => {
           )
           dispatch(act.clearCart())
           localStorage.removeItem("cart");
+          localStorage.removeItem("total")
+          window.location.reload()
         }
       })
   }
@@ -70,11 +69,7 @@ const ShoppingCart = () => {
             showConfirmButton: false,
             timer: 2000
           })
-          // Guardar el carrito en localStorage
-          //localStorage.setItem("cart", JSON.stringify(cart));
-          // Restablecer el estado del carrito en Redux
           dispatch(act.clearCart());
-          // Redirigir al usuario a la página de inicio de sesión o registro
           history.push("/login");
           return;
         }
@@ -88,11 +83,14 @@ const ShoppingCart = () => {
           });
         } else if (totalPrices == 0.00) {
           dispatch(act.freeOrder(totalPrices, cart, dataUser));
+          localStorage.removeItem("cart");
           dispatch(act.clearCart())
+          localStorage.removeItem("total");
           history.push("/user")
         } else if (totalPrice > 0.00) {
+          localStorage.removeItem("cart");
           dispatch(act.createOrder(totalPrices, cart, dataUser))
-          
+          localStorage.removeItem("total");
         }
       } catch (error) {
         console.error(error.message);

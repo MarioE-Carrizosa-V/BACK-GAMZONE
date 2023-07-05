@@ -49,8 +49,28 @@ export const MANDARREVIEW = "MANDARREVIEW";
 export const DELETEREVIEW = "DELETEREVIEW";
 export const FREE_ORDER = "FREE_ORDER";
 export const ALLGAMESADMIN = "ALLGAMESADMIN";
-export const ERROR = "ERROR"
+export const ERROR = "ERROR";
+export const SET_CART = "SET_CART";
+export const SET_TOTALPRICE = "SET_TOTALPRICE";
 
+
+
+//google
+export const loginGoogleFirebase = (datosGoogle) => {
+    return async function (dispatch) {
+        try {
+            const login = await axios.post("http://localhost:3001/firebaseGoogle", datosGoogle)
+            //console.log(login)
+            console.log(login.data)
+            return dispatch({
+                type : DATA_GOOGLE,
+                payload : login.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 // ACTION DE ACTUALIZAR CONTRASEÑA 
 
 export const updatePassword = (id, currentPassword, newPassword, confirmNewPassword) => {
@@ -141,34 +161,6 @@ export const allGamesAdmin = () => {
     }
 }
 
-export const freeOrder = (totalPrice, cartGames, dataUser) => {
-    console.log(totalPrice, cartGames, dataUser);
-    return async function (dispatch) {
-      try {
-        const response = await axios.post('/freeOrder', {totalPrice, cartGames, dataUser});
-        
-        if (response.status === 200) {
-          dispatch({
-            type: FREE_ORDER,
-            payload: response.data
-          });
-        } else {
-          dispatch(createOrderFailure('Error creating order'));
-        }
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
-  };
-
-
-export const mandarAReview = (game) => {
-    //console.log(game);
-    return {
-        type: MANDARREVIEW,
-        payload: game
-    }
-}
 
 //! ARREGLAR TODAS LAS RUTAS Y REDUCER DEL RAILWAY
 //? FUNCIONES DE PETICIONES
@@ -396,30 +388,75 @@ export const getGamesNewReleases = () => {
 }
 
 //? FUNCIONES DEL CARRITO
+export const setTotalPrice = (totalPrice) => {
+    console.log(totalPrice);
+    return function (dispatch, getState) {
+        dispatch({
+            type: SET_TOTALPRICE,
+            payload: totalPrice
+        })
+
+        const total = getState().total;
+        localStorage.setItem("total", JSON.stringify(total));
+    }
+}
+
+export const setCart = (cart) => {
+    return function (dispatch) {
+        dispatch({
+            type: SET_CART,
+            payload: cart
+        })
+    }
+}
+
 export const addCart = (game) => {
-    return function(dispatch){
+    return function(dispatch, getState) {
         dispatch({
             type: ADD_TO_CART,
             payload: game,
         })
+
+         //! revisar si funca YA
+         const cart = getState().cart;
+         localStorage.setItem("cart", JSON.stringify(cart));
+         const total = getState().total;
+         localStorage.setItem("total", JSON.stringify(total));
     }
 }
 
 export const removeCart = (id) => {
     //console.log(id);
-    return {
-        type: REMOVE_TO_CART,
-        payload: id,
+    return function(dispatch, getState) {
+        dispatch({
+            type: REMOVE_TO_CART,
+            payload: id,
+        })
+
+        //! revisar si funca YA
+        const cart = getState().cart;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        const total = getState().total;
+        localStorage.setItem("total", JSON.stringify(total));
     }
 }
 
 export const clearCart = ()  => {
-    return  {
-            type: CLEAR_CART  
-    }
+    return function(dispatch, getState) {
+        dispatch({
+            type: CLEAR_CART 
+        })
+           
+         //! revisar si funca YA
+     const cart = getState().cart;
+     localStorage.setItem("cart", JSON.stringify(cart));
+     const total = getState().total;
+     localStorage.setItem("total", JSON.stringify(total));
+    }  
 }
 
 export const createOrder = (totalPrice, cartGames, dataUser) => {
+    console.log(totalPrice, cartGames, dataUser);
     return async function (dispatch) {
         try {
             const response = await axios.post("/createOrder", {totalPrice, cartGames, dataUser})
@@ -448,6 +485,25 @@ export const createOrderFailure = (errorMessage) => {
     }
 }
 
+export const freeOrder = (totalPrice, cartGames, dataUser) => {
+    console.log(totalPrice, cartGames, dataUser);
+    return async function (dispatch) {
+      try {
+        const response = await axios.post('/freeOrder', {totalPrice, cartGames, dataUser});
+        
+        if (response.status === 200) {
+          dispatch({
+            type: FREE_ORDER,
+            payload: response.data
+          });
+        } else {
+          dispatch(createOrderFailure('Error creating order'));
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+  };
 
 //? FUNCIONES DE LA LISTA DE DESEADOS
 
@@ -765,36 +821,46 @@ export const getMyGames = (id) => {
 
 }
 
+//REVIEW
 
 export const getGameReview = (game) => {
     console.log(game);
     return (dispatch) => {
+      try {
         return dispatch({
-            type: GETGAMEREVIEW,
-            payload: game
-        })
-    }
-}
+          type: GETGAMEREVIEW,
+          payload: game,
+        });
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+  };
 
 export const getDeleteReview = (idRev) => {
-
     return async function (dispatch) {
-        try {
-            const response = await axios.delete(`/user/deleteReview/${idRev}`)
-            //console.log("RESPONSEEEE",response);
-            //console.log("IIIIIID",ids);
-            const game = response.data
-            dispatch({
-                type: DELETEREVIEW,
-                payload: game
-            })
-        } catch (error) {
-            console.log(error.message);
-        }
-    }
-}
+      try {
+        const response = await axios.delete(`/user/deleteReview/${idRev}`);
+        //console.log("RESPONSEEEE",response);
+        console.log("IIIIIID", idRev);
+        const game = response.data;
+        dispatch({
+          type: DELETEREVIEW,
+          payload: game,
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+  };
 
-
-
+  export const mandarAReview = (game) => {
+    console.log(game);
+    return {
+      type: MANDARREVIEW,
+      payload: game,
+    };
+  };
+  
 
 

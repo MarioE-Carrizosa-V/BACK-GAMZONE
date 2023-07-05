@@ -10,8 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Pagination from "../../components/Pagination/Pagination";
 const Search = () => {
   const search = useSelector((state) => state.search);
-
-  console.log(search)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(act.languagesGames());
@@ -141,9 +139,6 @@ const filtertype = (e)=>{
   
   
 
-
-  
-  console.log(search)
 
   const handleclean = () =>{
     document.getElementById("Type").value = "none";

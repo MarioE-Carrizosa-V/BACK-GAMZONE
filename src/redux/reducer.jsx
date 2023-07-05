@@ -274,66 +274,97 @@ const rootReducer=(state = initialState, action) => {
             }
 
 //?CASOS DEL CARRITO
-        case act.ADD_TO_CART:
-            const addGame = action.payload
-            const existingGame = state.cart.find(game => game.id === addGame.id)
-            if (existingGame) {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'warning',
-                    title: 'the game is already in the cart',
-                    showConfirmButton: false,
-                    timer: 2000
-                })
-                return state; 
-            }
-                Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Game added successfully",
-                showConfirmButton: false,
-                timer: 2000
-            }) 
-            const updateCart = [...state.cart, addGame]
-            const updatePrice = state.total + (addGame.price === 'free' ? 0 : addGame.price);
-            return {
-                ...state,
-                cart: updateCart,
-                total: updatePrice
-            }
+case act.SET_TOTALPRICE:
+      console.log(action.payload);
+      return {
+        ...state,
+        total: action.payload,
+      };
 
-        case act.REMOVE_TO_CART:
-            const removeGameId = action.payload
-            const updateGameRemoveCart = state.cart.filter((game) => game.id !== removeGameId)
-            const gameRemoved = state.cart.find(game => game.id === removeGameId)
-            const updateTotalPrice = state.total - gameRemoved.price;
-            return {
-                ...state,
-                cart: updateGameRemoveCart,
-                total: updateTotalPrice
-            }
+    case act.SET_CART:
+      return {
+        ...state,
+        cart: action.payload,
+      };
 
-        case act.CLEAR_CART:
-            return {
-                ...state,
-                cart: [],
-                total: 0
-            }
+    case act.ADD_TO_CART:
+      const addGame = action.payload;
+      const existingGame = state.cart.find((game) => game.id === addGame.id);
+      if (existingGame) {
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: "the game is already in the cart",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        return state;
+      }
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Game added successfully",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      const updateCart = [...state.cart, addGame];
+      const updatePrice =
+        state.total + (addGame.price === "free" ? 0 : addGame.price);
+      return {
+        ...state,
+        cart: updateCart,
+        total: updatePrice,
+      };
 
-        case act.CREATE_ORDER_SUCCESS:
-            return {
-                ...state,
-                orderCreated: true,
-                error: null
-            }
+    case act.REMOVE_TO_CART:
+      const removeGameId = action.payload;
+      const updateGameRemoveCart = state.cart.filter(
+        (game) => game.id !== removeGameId
+      );
+      const gameRemoved = state.cart.find((game) => game.id === removeGameId);
+      const updateTotalPrice = state.total - gameRemoved.price;
+      return {
+        ...state,
+        cart: updateGameRemoveCart,
+        total: updateTotalPrice,
+      };
 
-        case act.CREATE_ORDER_FAILURE:
-            return {
-                ...state,
-                orderCreated: false,
-                error: action.payload
-            }
-        
+    case act.CLEAR_CART:
+      return {
+        ...state,
+        cart: [],
+        total: 0,
+      };
+
+    case act.CREATE_ORDER_SUCCESS:
+      return {
+        ...state,
+        orderCreated: true,
+        error: null,
+      };
+
+    case act.CREATE_ORDER_FAILURE:
+      return {
+        ...state,
+        orderCreated: false,
+        error: action.payload,
+      };
+
+    case act.FREE_ORDER:
+      console.log(action.payload);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Thanks for your purchase",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      console.log(action.payload);
+      return {
+        ...state,
+        orderCreated: true,
+        error: null,
+      };
 //? CASOS DE LA LISTA DE DESEADOS
         case act.ADD_TO_WHISH_LIST:
             const addList = action.payload
@@ -483,13 +514,7 @@ const rootReducer=(state = initialState, action) => {
                     userStorage: action.payload
             }
 
-            case act.GETGAMEREVIEW:
-            
-            return {
-                ...state,
-                review: action.payload
-            }
-            
+
 //? CASOS DE LA BIBLIOTECA
 
             case act.GET_MYGAMES:
@@ -499,28 +524,33 @@ const rootReducer=(state = initialState, action) => {
                 }
 
                 case act.MANDARREVIEW:
+                    const game = action.payload;
+                    return {
+                        ...state,
+                        review: game,
+                    };
 
-            const game = action.payload
-            console.log(game);
-            return {
-                ...state,
-                review: game
-            }
-
-        case act.DELETEREVIEW:
+    case act.DELETEREVIEW:
+                        //console.log(action.payload);
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Review removed successfuly",
+            showConfirmButton: false,
+            timer: 2000,
+        }).then(() => {
+        window.location.reload();
+        });
+        return {
+            ...state,
+            deleteReview: action.payload,
+        };
+        case act.GETGAMEREVIEW:
             //console.log(action.payload);
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Review removed successfuly",
-                showConfirmButton: false,
-                timer: 2000
-            })
             return {
                 ...state,
-                deleteReview: action.payload
-            }
-
+                review: action.payload,
+            };
             
         default:
             return {...state};
