@@ -146,3 +146,9 @@ margin-bottom: 15px;
 .notfound{
   color: #ccc
 }
+
+.select{
+border: none rgb(49, 49, 49);
+}
+.opcion{
+}

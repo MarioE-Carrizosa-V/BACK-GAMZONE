@@ -215,7 +215,7 @@ const filtertype = (e)=>{
           </div>
           <div className={style.option}>
                   <h3>Type:</h3>
-                  <select id="Type" defaultValue="none" onChange={e => filtertype(e)}>
+                  <select  id="Type" defaultValue="none" onChange={e => filtertype(e)}>
                   <option disabled={true} value="none" >select an option</option>
                               {types ? types.map((type, key)=>{
                                 return(
@@ -252,8 +252,8 @@ const filtertype = (e)=>{
               </div>
               <div className={style.option}>
                   <h3>Categories:</h3>
-                  <select id="Categories" defaultValue="none"  onChange={e => filtercategories(e)}>
-                  <option disabled={true} value="none" >select an option</option>
+                  <select className={style.select} id="Categories" defaultValue="none"  onChange={e => filtercategories(e)}>
+                  <option className={style.opcion} disabled={true} value="none" >select an option</option>
                       {filteredcategories.map((temp, key) =>{
                           return (
                               <option value={temp} key={key}>{temp}</option>
