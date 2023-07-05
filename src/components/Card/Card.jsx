@@ -28,16 +28,6 @@ const Card = (props) => {
   };
 
   const handleAdd = () => {
-    if (!dataUser) {
-      Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: 'Please register or log in to make a purchase',
-        showConfirmButton: false,
-        timer: 2000
-      })
-      return 
-    }
       dispatch(act.addCart({ id, price: price, name, image }));
   };
 

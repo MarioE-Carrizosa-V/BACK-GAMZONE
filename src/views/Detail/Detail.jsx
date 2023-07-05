@@ -61,16 +61,6 @@ const Detail = (props) => {
   }
   
   const handleAdd = () => {
-    if (!datosUser) {
-      Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: 'Please register or log in to make a purchase',
-        showConfirmButton: false,
-        timer: 2000
-      })
-      return;
-    }
     dispatch(act.addCart({id: bkId, image: img, name:name , price: isNaN(price) ? 0 : price}));
   }
   
